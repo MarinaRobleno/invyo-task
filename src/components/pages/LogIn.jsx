@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { AuthContext } from "../helpers/Context";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function LogIn() {
   const mailKey = "test@invyo.io";
   const passwordKey = "test123@";
   const {loggedIn, setLoggedIn} = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/data";
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -55,7 +53,7 @@ export function LogIn() {
           value={password}
           onChange={handlePasswordInput}
         />
-        <Button type="submit" variant="contained">
+        <Button style={{fontWeight: 'bold'}} type="submit" variant="contained">
           Submit
         </Button>
       </form>
