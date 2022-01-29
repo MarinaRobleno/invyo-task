@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -26,8 +26,12 @@ import { AccountCircle } from "@mui/icons-material";
 export function MyData() {
   const articles = data.articles;
   const tagTypes = Object.keys(articles[0].Tags);
+  const [topicArray, setTopicArray] = useState([]);
+  const [uniqueTopicArray, setUniqueTopicArray] = useState([]);
   const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("Order Alphabetically");
+  const [order, setOrder] = useState("");
+  const [language, setLanguage] = useState("");
+  const [tag, setTag] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -45,6 +49,14 @@ export function MyData() {
     setOrder(e.target.value);
   };
 
+  const handleLanguageFilter = (e) => {
+    setLanguage(e.target.value);
+  };
+
+  const handleTagFilter = (e) => {
+    setTag(e.target.value);
+  };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -54,20 +66,29 @@ export function MyData() {
     setPage(0);
   };
 
+  useEffect(() => {
+    for (let i = 0; i < articles.length; i++) {
+      articles[i].Tags.topic.map((tag) => {
+        topicArray.push(tag);
+      });
+    }
+    setUniqueTopicArray([...new Set(topicArray)]);
+  }, []);
+
   return (
     <>
       <Box
         component={Paper}
         sx={{
           minWidth: 650,
-          height: 300,
+          height: 250,
           marginBottom: "20px",
           padding: "20px",
         }}
       >
         <div style={{ display: "flex", width: "100%" }} id="search-div">
           <TextField
-            style={{ width: "100%", marginBottom: '20px' }}
+            style={{ width: "100%", marginBottom: "20px" }}
             id="search-bar"
             label="Search Title or Content"
             variant="outlined"
@@ -81,24 +102,69 @@ export function MyData() {
             <AiOutlineClose />
           </Button>
         </div>
-        <FormControl style={{ width: '200px'}}>
-          <InputLabel id="demo-simple-select-label">
-            Order Alphabetically
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={order}
-            onChange={handleOrderAlphabetically}
-            label="Age"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={'title'}>Title</MenuItem>
-            <MenuItem value={'content'}>Content</MenuItem>
-          </Select>
-        </FormControl>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-around",
+          }}
+          id="filter-div"
+        >
+          <FormControl style={{ width: "200px" }}>
+            <InputLabel id="order-alphabetically">
+              Order Alphabetically
+            </InputLabel>
+            <Select
+              labelId="order-alphabetically"
+              id="demo-simple-select-standard"
+              value={order}
+              onChange={handleOrderAlphabetically}
+              label="Order Alphabetically"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"title"}>Title</MenuItem>
+              <MenuItem value={"content"}>Content</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl style={{ width: "250px" }}>
+            <InputLabel id="language-filter">Select Language Filter</InputLabel>
+            <Select
+              labelId="language-filter"
+              id="demo-simple-select-standard"
+              value={language}
+              onChange={handleLanguageFilter}
+              label="Language Filter"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"en"}>English</MenuItem>
+              <MenuItem value={"es"}>Spanish</MenuItem>
+              <MenuItem value={"it"}>Italian</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl style={{ width: "250px" }}>
+            <InputLabel id="tag-filter">Select Language Filter</InputLabel>
+            <Select
+              labelId="tag-filter"
+              id="demo-simple-select-standard"
+              value={tag}
+              onChange={handleTagFilter}
+              label="Tag Filter"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {uniqueTopicArray.map((topic) => (
+                <MenuItem key={topic} value={topic}>
+                  {topic}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -124,23 +190,37 @@ export function MyData() {
                 )
               : articles
             )
-              .sort(function(a,b) {
-                if (order === "title"){
+              .sort(function (a, b) {
+                if (order === "title") {
                   if (a.Title > b.Title) {
-                    return 1
-                  } else if(a.Title < b.Title){
-                    return -1
+                    return 1;
+                  } else if (a.Title < b.Title) {
+                    return -1;
                   }
                   return 0;
-                }else if(order === "content"){
+                } else if (order === "content") {
                   if (a.Content > b.Content) {
-                    return 1
-                  } else if(a.Content < b.Content){
-                    return -1
+                    return 1;
+                  } else if (a.Content < b.Content) {
+                    return -1;
                   }
                   return 0;
-                }else{
+                } else {
                   return 0;
+                }
+              })
+              .filter((article) => {
+                if (language === "") {
+                  return article;
+                } else if (article.Language === language) {
+                  return article;
+                }
+              })
+              .filter((article) => {
+                if (tag === "") {
+                  return article;
+                } else if (article.Tags.topic.includes(tag)) {
+                  return article;
                 }
               })
               .filter((article) => {
