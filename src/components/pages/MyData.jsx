@@ -81,7 +81,7 @@ export function MyData() {
         component={Paper}
         sx={{
           minWidth: 650,
-          height: 250,
+          height: 200,
           marginBottom: "20px",
           padding: "20px",
         }}
@@ -110,7 +110,7 @@ export function MyData() {
           }}
           id="filter-div"
         >
-          <FormControl style={{ width: "200px" }}>
+          <FormControl style={{ width: "100%" }}>
             <InputLabel id="order-alphabetically">
               Order Alphabetically
             </InputLabel>
@@ -128,7 +128,7 @@ export function MyData() {
               <MenuItem value={"content"}>Content</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ width: "250px" }}>
+          <FormControl style={{ width: "100%" }}>
             <InputLabel id="language-filter">Select Language Filter</InputLabel>
             <Select
               labelId="language-filter"
@@ -145,8 +145,8 @@ export function MyData() {
               <MenuItem value={"it"}>Italian</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ width: "250px" }}>
-            <InputLabel id="tag-filter">Select Language Filter</InputLabel>
+          <FormControl style={{ width: "100%" }}>
+            <InputLabel id="tag-filter">Select Tag Filter</InputLabel>
             <Select
               labelId="tag-filter"
               id="demo-simple-select-standard"
