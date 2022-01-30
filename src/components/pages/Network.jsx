@@ -22,19 +22,17 @@ export function Network() {
       hierarchical: false,
     },
     edges: {
-      color: "#357BDE",
+      color: "#2074d4",
+      length: 250,
     },
     nodes: {
-      color: "#8ED5F5",
-      shape: 'circle',
+      color: "#2074d4",
+      shape: "circle",
+      font: { color: "#FFFFFF" },
     },
     height: "1000px",
-    width: '100%'
+    width: "100%",
   };
 
-  return (
-    <div style={{ width: "100%", height: "100%" }}>
-      <Graph graph={graph} options={options} />
-    </div>
-  );
+  return <Graph graph={graph} options={options} />;
 }
