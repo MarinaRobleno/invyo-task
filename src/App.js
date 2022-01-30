@@ -7,6 +7,7 @@ import { MyTasks } from "./components/pages/MyTasks";
 import { PrivateRoute } from "./components/helpers/PrivateRoute";
 import { useEffect, useState } from "react";
 import { AuthContext } from "./components/helpers/Context";
+import { Network } from "./components/pages/Network";
 
 const SAVE_STATE = "1";
 const SAVE_KEY = "auth";
@@ -29,6 +30,14 @@ function App() {
         <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
           <Routes>
             <Route path="/login" element={<LogIn />} />
+            <Route
+              path="/data/network"
+              element={
+                <PrivateRoute>
+                  <Network />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/data"
               element={

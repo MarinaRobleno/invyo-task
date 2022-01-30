@@ -22,6 +22,7 @@ import {
 import data from "../../data/data";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { AccountCircle } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export function MyData() {
   const articles = data.articles;
@@ -72,7 +73,7 @@ export function MyData() {
         topicArray.push(tag);
       });
     }
-    setUniqueTopicArray([...new Set(topicArray)]);
+    setUniqueTopicArray([...new Set(topicArray)].sort());
   }, []);
 
   return (
@@ -164,6 +165,15 @@ export function MyData() {
               ))}
             </Select>
           </FormControl>
+          <Link to='./network'>
+            <Button
+              id="network-button"
+              variant="contained"
+              style={{ marginLeft: "10px", width: "100px", height: '55px', fontWeight: "bold" }}
+            >
+              Network
+            </Button>
+          </Link>
         </div>
       </Box>
       <TableContainer component={Paper}>
