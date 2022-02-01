@@ -22,6 +22,7 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { ConfirmDelete } from "../ConfirmDelete";
 
 export function MyTasks() {
   const saveState = (tasks) => {
@@ -131,12 +132,14 @@ export function MyTasks() {
               <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Status
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
-                Edit
-              </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
-                Delete
-              </TableCell>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+              ></TableCell>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+              ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -163,14 +166,18 @@ export function MyTasks() {
                     {task.deadline >= today ? "in progress" : "completed"}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <AiFillEdit style={{ cursor: "pointer" }} />
+                    <Button id={task.title} style={{ cursor: "pointer" }}>
+                      Edit
+                    </Button>
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <AiFillDelete
+                    <Button
                       id={task.title}
                       style={{ cursor: "pointer" }}
                       onClick={(e) => setDeletingTask(e.target.id)}
-                    />
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -178,39 +185,10 @@ export function MyTasks() {
         </Table>
       </TableContainer>
       {deletingTask ? (
-        <Box
-        component={Paper}
-        style={{
-          left: "50%",
-          marginLeft: "-150px",
-          top: "50%",
-          marginTop: "-60px",
-        }}
-        sx={{
-          position: "absolute",
-          minWidth: 300,
-          height: 120,
-          marginBottom: "20px",
-          padding: "20px",
-          marginRight: "20px",
-        }}
-      >
-        Delete task?
-        <div style={{ width: "100%", display:' flex', justifyContent:'space-around', marginTop: '20px' }}>
-          <Button
-            variant="contained"
-            onClick={handleDeleteTask}
-          >
-            Yes
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => setDeletingTask("")}
-          >
-            No
-          </Button>
-        </div>
-      </Box>
+        <ConfirmDelete
+          handleDeleteTask={handleDeleteTask}
+          setDeletingTask={setDeletingTask}
+        />
       ) : null}
     </div>
   );
