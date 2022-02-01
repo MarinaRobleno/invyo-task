@@ -23,6 +23,7 @@ import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
 import { AiFillDelete, AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
+import { EditTask } from "../EditTask";
 
 export function MyTasks() {
   const saveState = (tasks) => {
@@ -37,10 +38,11 @@ export function MyTasks() {
   const [showCompleted, setShowCompleted] = useState("");
   const [addForm, setAddForm] = useState("");
   const [deletingTask, setDeletingTask] = useState("");
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0");
-  var yyyy = today.getFullYear();
+  const [editingTask, setEditingTask] = useState("");
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
+  let yyyy = today.getFullYear();
   today = yyyy + "-" + mm + "-" + dd;
 
   const handleOpenAddForm = () => {
@@ -66,7 +68,6 @@ export function MyTasks() {
 
   useEffect(() => {
     saveState(tasksList);
-    console.log(tasksList)
   }, [tasksList]);
 
   return (
@@ -94,7 +95,14 @@ export function MyTasks() {
           padding: "20px",
         }}
       >
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', width: '100%'}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <Button
             variant="contained"
             style={{
@@ -105,7 +113,11 @@ export function MyTasks() {
             }}
             onClick={handleOpenAddForm}
           >
-            {addForm ? <AiFillCloseCircle style={{ fontSize: "30px" }}/> :<MdOutlineAddCircle style={{ fontSize: "30px" }} />}
+            {addForm ? (
+              <AiFillCloseCircle style={{ fontSize: "20px" }} />
+            ) : (
+              <MdOutlineAddCircle style={{ fontSize: "20px" }} />
+            )}
           </Button>
           <Button
             variant="contained"
@@ -170,7 +182,18 @@ export function MyTasks() {
                     {task.deadline >= today ? "in progress" : "completed"}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <Button id={task.title} style={{ cursor: "pointer" }}>
+                    <Button
+                      id={task.id}
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        setEditingTask({
+                          id: task.id,
+                          title: task.title,
+                          description: task.description,
+                          deadline: task.deadline,
+                        })
+                      }
+                    >
                       Edit
                     </Button>
                   </TableCell>
@@ -194,6 +217,7 @@ export function MyTasks() {
           setDeletingTask={setDeletingTask}
         />
       ) : null}
+      {editingTask ? <EditTask editingTask={editingTask} setEditingTask={setEditingTask} setTasksList={setTasksList} tasksList={tasksList}/> : null}
     </div>
   );
 }
