@@ -1,8 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export function NewTask({ setTasksList }) {
   const [newTask, setNewTask] = useState({
+    id: "",
     title: "",
     description: "",
     deadline: "",
@@ -11,6 +13,7 @@ export function NewTask({ setTasksList }) {
   const handleNewTitle = (e) => {
     e.preventDefault();
     setNewTask({ ...newTask, title: e.target.value });
+    
   };
   const handleNewDescription = (e) => {
     e.preventDefault();
@@ -27,8 +30,13 @@ export function NewTask({ setTasksList }) {
       alert("Please complete the fields");
     } else {
       setTasksList((prev) => [...prev, newTask]);
+      console.log(newTask)
     }
   };
+
+  useEffect(() => {
+    setNewTask({...newTask, id: uuidv4()})
+  }, [newTask.title])
 
   return (
     <form

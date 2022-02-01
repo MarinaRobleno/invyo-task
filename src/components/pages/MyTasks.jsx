@@ -60,12 +60,13 @@ export function MyTasks() {
   };
 
   const handleDeleteTask = () => {
-    setTasksList(tasksList.filter((task) => task.title !== deletingTask));
+    setTasksList(tasksList.filter((task) => task.id !== deletingTask));
     setDeletingTask("");
   };
 
   useEffect(() => {
     saveState(tasksList);
+    console.log(tasksList)
   }, [tasksList]);
 
   return (
@@ -175,7 +176,7 @@ export function MyTasks() {
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <Button
-                      id={task.title}
+                      id={task.id}
                       style={{ cursor: "pointer" }}
                       onClick={(e) => setDeletingTask(e.target.id)}
                     >
