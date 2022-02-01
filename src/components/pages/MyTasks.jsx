@@ -19,12 +19,20 @@ import {
   FormControl,
 } from "@mui/material";
 import { MdOutlineAddCircle } from "react-icons/md";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 export function MyTasks() {
-  const [tasksList, setTaskList] = useState([]);
+  const saveState = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+  const retrieveState = () => {
+    return localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks"))
+      : [];
+  };
+  const [tasksList, setTaskList] = useState(retrieveState());
   const [showCompleted, setShowCompleted] = useState("");
   const [addForm, setAddForm] = useState("");
   var today = new Date();
@@ -39,7 +47,7 @@ export function MyTasks() {
     } else {
       setAddForm("show");
     }
-  }
+  };
 
   const handleShowAll = () => {
     if (showCompleted) {
@@ -49,21 +57,26 @@ export function MyTasks() {
     }
   };
 
+  useEffect(() => {
+    saveState(tasksList);
+  }, [tasksList]);
+
   return (
     <div style={{ display: "flex" }}>
-      {addForm ? 
-      <Box
-        component={Paper}
-        sx={{
-          minWidth: 300,
-          height: 300,
-          marginBottom: "20px",
-          padding: "20px",
-          marginRight: "20px"
-        }}
-      >
-        <NewTask setTaskList={setTaskList} />
-      </Box> : null}
+      {addForm ? (
+        <Box
+          component={Paper}
+          sx={{
+            minWidth: 300,
+            height: 300,
+            marginBottom: "20px",
+            padding: "20px",
+            marginRight: "20px",
+          }}
+        >
+          <NewTask setTaskList={setTaskList} />
+        </Box>
+      ) : null}
       <TableContainer
         component={Paper}
         style={{ width: "100%", height: "100%" }}
