@@ -32,9 +32,10 @@ export function MyTasks() {
       ? JSON.parse(localStorage.getItem("tasks"))
       : [];
   };
-  const [tasksList, setTaskList] = useState(retrieveState());
+  const [tasksList, setTasksList] = useState(retrieveState());
   const [showCompleted, setShowCompleted] = useState("");
   const [addForm, setAddForm] = useState("");
+  const [deletingTask, setDeletingTask] = useState("");
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -57,6 +58,11 @@ export function MyTasks() {
     }
   };
 
+  const handleDeleteTask = () => {
+    setTasksList(tasksList.filter((task) => task.title !== deletingTask));
+    setDeletingTask("");
+  };
+
   useEffect(() => {
     saveState(tasksList);
   }, [tasksList]);
@@ -74,7 +80,7 @@ export function MyTasks() {
             marginRight: "20px",
           }}
         >
-          <NewTask setTaskList={setTaskList} />
+          <NewTask setTasksList={setTasksList} />
         </Box>
       ) : null}
       <TableContainer
@@ -160,13 +166,52 @@ export function MyTasks() {
                     <AiFillEdit style={{ cursor: "pointer" }} />
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <AiFillDelete style={{ cursor: "pointer" }} />
+                    <AiFillDelete
+                      id={task.title}
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => setDeletingTask(e.target.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
           </TableBody>
         </Table>
       </TableContainer>
+      {deletingTask ? (
+        <Box
+        component={Paper}
+        style={{
+          left: "50%",
+          marginLeft: "-150px",
+          top: "50%",
+          marginTop: "-60px",
+        }}
+        sx={{
+          position: "absolute",
+          minWidth: 300,
+          height: 120,
+          marginBottom: "20px",
+          padding: "20px",
+          marginRight: "20px",
+        }}
+      >
+        Delete task?
+        <div style={{ width: "100%", display:' flex', justifyContent:'space-around', marginTop: '20px' }}>
+          <Button
+            variant="contained"
+            onClick={handleDeleteTask}
+          >
+            Yes
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => setDeletingTask("")}
+          >
+            No
+          </Button>
+        </div>
+      </Box>
+      ) : null}
     </div>
   );
 }

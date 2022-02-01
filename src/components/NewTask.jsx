@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-export function NewTask({ setTaskList }) {
+export function NewTask({ setTasksList }) {
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
@@ -26,7 +26,7 @@ export function NewTask({ setTaskList }) {
     if (!newTask.title || !newTask.description || !newTask.deadline) {
       alert("Please complete the fields");
     } else {
-      setTaskList((prev) => [...prev, newTask]);
+      setTasksList((prev) => [...prev, newTask]);
     }
   };
 
