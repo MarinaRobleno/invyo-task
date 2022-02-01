@@ -21,7 +21,7 @@ import {
 import { MdOutlineAddCircle } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 
 export function MyTasks() {
@@ -93,30 +93,33 @@ export function MyTasks() {
           padding: "20px",
         }}
       >
-        <Button
-          variant="contained"
-          style={{
-            marginLeft: "10px",
-            width: "55px",
-            height: "55px",
-            fontWeight: "bold",
-          }}
-          onClick={handleOpenAddForm}
-        >
-          <MdOutlineAddCircle style={{ fontSize: "30px" }} />
-        </Button>
-        <Button
-          variant="contained"
-          style={{
-            marginLeft: "10px",
-            width: "100px",
-            height: "55px",
-            fontWeight: "bold",
-          }}
-          onClick={handleShowAll}
-        >
-          Completed Tasks
-        </Button>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems:'center', width: '100%'}}>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "10px",
+              maxWidth: "230px",
+              height: "30px",
+              fontWeight: "bold",
+            }}
+            onClick={handleOpenAddForm}
+          >
+            {addForm ? <AiFillCloseCircle style={{ fontSize: "30px" }}/> :<MdOutlineAddCircle style={{ fontSize: "30px" }} />}
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "10px",
+              width: "100px",
+              height: "55px",
+              fontWeight: "bold",
+            }}
+            onClick={handleShowAll}
+          >
+            Completed Tasks
+          </Button>
+        </div>
+
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
