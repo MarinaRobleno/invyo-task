@@ -26,27 +26,49 @@ import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 export function MyTasks() {
   const [tasksList, setTaskList] = useState([]);
   const [showCompleted, setShowCompleted] = useState("");
+  const [addForm, setAddForm] = useState("");
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mm = String(today.getMonth() + 1).padStart(2, "0");
   var yyyy = today.getFullYear();
   today = yyyy + "-" + mm + "-" + dd;
 
-  const handleShowAll = () => {
-    if (showCompleted) {
-      setShowCompleted("")
-    }else{
-      setShowCompleted("all")
+  const handleOpenAddForm = () => {
+    if (addForm) {
+      setAddForm("");
+    } else {
+      setAddForm("show");
     }
   }
 
+  const handleShowAll = () => {
+    if (showCompleted) {
+      setShowCompleted("");
+    } else {
+      setShowCompleted("all");
+    }
+  };
+
   return (
     <div style={{ display: "flex" }}>
+      {addForm ? 
       <Box
         component={Paper}
         sx={{
           minWidth: 300,
-          height: 500,
+          height: 300,
+          marginBottom: "20px",
+          padding: "20px",
+          marginRight: "20px"
+        }}
+      >
+        <NewTask setTaskList={setTaskList} />
+      </Box> : null}
+      <TableContainer
+        component={Paper}
+        style={{ width: "100%", height: "100%" }}
+        sx={{
+          minWidth: 650,
           marginBottom: "20px",
           padding: "20px",
         }}
@@ -59,6 +81,7 @@ export function MyTasks() {
             height: "55px",
             fontWeight: "bold",
           }}
+          onClick={handleOpenAddForm}
         >
           <MdOutlineAddCircle style={{ fontSize: "30px" }} />
         </Button>
@@ -74,17 +97,6 @@ export function MyTasks() {
         >
           Completed Tasks
         </Button>
-        <NewTask setTaskList={setTaskList} />
-      </Box>
-      <TableContainer
-        component={Paper}
-        style={{ width: "100%", height: "100%" }}
-        sx={{
-          minWidth: 650,
-          marginBottom: "20px",
-          padding: "20px",
-        }}
-      >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>

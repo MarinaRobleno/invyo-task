@@ -32,7 +32,7 @@ export function NewTask({ setTaskList }) {
 
   return (
     <form
-      style={{ display: "flex", flexDirection: "column" }}
+      style={{ display: "flex", flexDirection: "column", justifyContent: 'space-around', height: '100%' }}
       onSubmit={handleSubmitNewTask}
     >
       <TextField label="Title" size="small" onChange={handleNewTitle} />
@@ -43,7 +43,6 @@ export function NewTask({ setTaskList }) {
       />
       <TextField
         type="date"
-        label="Deadline"
         size="small"
         onChange={handleNewDeadline}
       />
