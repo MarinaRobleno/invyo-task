@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { Alert, Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export function NewTask({ setTasksList }) {
+  const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState({
     id: "",
     title: "",
@@ -13,7 +14,6 @@ export function NewTask({ setTasksList }) {
   const handleNewTitle = (e) => {
     e.preventDefault();
     setNewTask({ ...newTask, title: e.target.value });
-    
   };
   const handleNewDescription = (e) => {
     e.preventDefault();
@@ -30,41 +30,55 @@ export function NewTask({ setTasksList }) {
       alert("Please complete the fields");
     } else {
       setTasksList((prev) => [...prev, newTask]);
-      console.log(newTask)
+      setOpen(true);
     }
   };
 
   useEffect(() => {
-    setNewTask({...newTask, id: uuidv4()})
-  }, [newTask.title])
+    setNewTask({ ...newTask, id: uuidv4() });
+  }, [newTask.title]);
 
   return (
-    <form
-      style={{ display: "flex", flexDirection: "column", justifyContent: 'space-around', height: '100%' }}
-      onSubmit={handleSubmitNewTask}
-    >
-      <TextField label="Title" size="small" onChange={handleNewTitle} />
-      <TextField
-        label="Description"
-        size="small"
-        onChange={handleNewDescription}
-      />
-      <TextField
-        type="date"
-        size="small"
-        onChange={handleNewDeadline}
-      />
-      <Button
-        variant="contained"
-        type="submit"
+    <>
+      {open ? (
+        <Alert
+          style={{position: 'absolute', top: '305px', left: '0', width: '100%'}}
+          onClose={() => {
+            setOpen(false);
+          }}
+          severity="success"
+        >
+          Task added succesfully!
+        </Alert>
+      ) : null}
+      <form
         style={{
-          width: "55px",
-          height: "55px",
-          fontWeight: "bold",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          height: "100%",
         }}
+        onSubmit={handleSubmitNewTask}
       >
-        Add
-      </Button>
-    </form>
+        <TextField label="Title" size="small" onChange={handleNewTitle} />
+        <TextField
+          label="Description"
+          size="small"
+          onChange={handleNewDescription}
+        />
+        <TextField type="date" size="small" onChange={handleNewDeadline} />
+        <Button
+          variant="contained"
+          type="submit"
+          style={{
+            width: "55px",
+            height: "55px",
+            fontWeight: "bold",
+          }}
+        >
+          Add
+        </Button>
+      </form>
+    </>
   );
 }

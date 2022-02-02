@@ -61,11 +61,6 @@ export function MyTasks() {
     }
   };
 
-  const calculateProgressBar = (deadline) => {
-    const daysLeft = Math.round((new Date(deadline).getTime()- new Date())/ (1000*60*60*24));
-    
-  }
-
   const handleDeleteTask = () => {
     setTasksList(tasksList.filter((task) => task.id !== deletingTask));
     setDeletingTask("");
@@ -86,6 +81,7 @@ export function MyTasks() {
             marginBottom: "20px",
             padding: "20px",
             marginRight: "20px",
+            position: "relative"
           }}
         >
           <NewTask setTasksList={setTasksList} />
@@ -153,9 +149,6 @@ export function MyTasks() {
               <TableCell align="left" style={{ fontWeight: "bold" }}>
                 Status
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
-                Progress bar
-              </TableCell>
               <TableCell
                 align="left"
                 style={{ fontWeight: "bold" }}
@@ -188,9 +181,6 @@ export function MyTasks() {
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {task.deadline >= today ? "in progress" : "completed"}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {calculateProgressBar(task.deadline)}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <Button

@@ -61,3 +61,7 @@ a {
   overflow: hidden;
   white-space: nowrap;
 }
+
+.display-none{
+    display: none;
+}
