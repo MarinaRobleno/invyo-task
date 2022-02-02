@@ -21,20 +21,19 @@ import {
 import data from "../../data/data";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 export function MyData() {
   const articles = data.articles;
-  const tagTypes = Object.keys(articles[0].Tags);
   const [topicArray, setTopicArray] = useState([]);
   const [uniqueTopicArray, setUniqueTopicArray] = useState([]);
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState("");
   const [language, setLanguage] = useState("");
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState([]);
   const [articlesCount, setArticlesCount] = useState(articles.length);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  console.log(tag);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -54,17 +53,24 @@ export function MyData() {
   };
 
   const handleTagFilter = (e) => {
-    setTag(e.target.value);
+    if (e.target.value === "none") {
+      setTag("");
+    } else {
+      const {
+        target: { value },
+      } = e;
+      setTag(typeof value === "string" ? value.split(",") : value);
+    }
   };
 
   const handleShowMore = (e) => {
     const currentContent = document.getElementById(e.target.id);
     if (currentContent.classList.contains("hide-content")) {
       currentContent.classList.remove("hide-content");
-      e.target.textContent = "Hide"
+      e.target.textContent = "Hide";
     } else {
       currentContent.classList.add("hide-content");
-      e.target.textContent = "Show More"
+      e.target.textContent = "Show More";
     }
   };
 
@@ -163,13 +169,11 @@ export function MyData() {
             <Select
               labelId="tag-filter"
               id="demo-simple-select-standard"
+              multiple
               value={tag}
               onChange={handleTagFilter}
               label="Tag Filter"
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               {uniqueTopicArray.map((topic) => (
                 <MenuItem key={topic} value={topic}>
                   {topic}
@@ -236,9 +240,11 @@ export function MyData() {
                 }
               })
               .filter((article) => {
-                if (tag === "") {
+                if (tag.length === 0) {
                   return article;
-                } else if (article.Tags.topic.includes(tag)) {
+                } else if (
+                  tag.some((element) => article.Tags.topic.includes(element))
+                ) {
                   return article;
                 }
               })
@@ -272,7 +278,11 @@ export function MyData() {
                     {article.Content}{" "}
                     <div
                       id={articles.indexOf(article)}
-                      style={{ fontWeight: "bold", cursor: "pointer", textDecoration: "underline" }}
+                      style={{
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                      }}
                       onClick={handleShowMore}
                     >
                       Show more
@@ -280,9 +290,9 @@ export function MyData() {
                   </TableCell>
                   <TableCell align="left">{article.Language}</TableCell>
                   <TableCell align="left">
-                    {tagTypes.map((tagType) =>
-                      article.Tags[tagType].map((tag) => <Chip label={tag} />)
-                    )}
+                    {article.Tags.topic.map((tag) => (
+                      <Chip label={tag} />
+                    ))}
                   </TableCell>
                 </TableRow>
               ))
