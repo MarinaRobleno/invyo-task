@@ -10,6 +10,7 @@ export function LogIn() {
   const navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleMailInput = (e) => {
     setMail(e.target.value);
@@ -22,7 +23,8 @@ export function LogIn() {
     if (mailKey === mail && passwordKey === password) {
       setLoggedIn(true);
     } else {
-      alert("Wrong mail or username");
+      setError(true);
+      alert("Incorrect mail or password")
     }
   };
 
@@ -39,6 +41,7 @@ export function LogIn() {
         <TextField
           className="login-field"
           id="filled-basic"
+          error={error}
           label="Email"
           variant="filled"
           value={mail}
@@ -47,6 +50,7 @@ export function LogIn() {
         <TextField
           className="login-field"
           id="filled-basic"
+          error={error}
           type="password"
           label="Password"
           variant="filled"
