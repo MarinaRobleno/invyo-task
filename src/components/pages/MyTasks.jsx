@@ -72,21 +72,6 @@ export function MyTasks() {
 
   return (
     <div style={{ display: "flex" }}>
-      {addForm ? (
-        <Box
-          component={Paper}
-          sx={{
-            minWidth: 300,
-            height: 300,
-            marginBottom: "20px",
-            padding: "20px",
-            marginRight: "20px",
-            position: "relative"
-          }}
-        >
-          <NewTask setTasksList={setTasksList} />
-        </Box>
-      ) : null}
       <TableContainer
         component={Paper}
         style={{ width: "100%", height: "100%" }}
@@ -108,6 +93,18 @@ export function MyTasks() {
             variant="contained"
             style={{
               marginLeft: "10px",
+              width: "100px",
+              height: "55px",
+              fontWeight: "bold",
+            }}
+            onClick={handleShowAll}
+          >
+            {showCompleted ? "Hide Completed" : "Show Completed"}
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "10px",
               maxWidth: "230px",
               height: "30px",
               fontWeight: "bold",
@@ -119,18 +116,6 @@ export function MyTasks() {
             ) : (
               <MdOutlineAddCircle style={{ fontSize: "20px" }} />
             )}
-          </Button>
-          <Button
-            variant="contained"
-            style={{
-              marginLeft: "10px",
-              width: "100px",
-              height: "55px",
-              fontWeight: "bold",
-            }}
-            onClick={handleShowAll}
-          >
-            Completed Tasks
           </Button>
         </div>
 
@@ -212,13 +197,35 @@ export function MyTasks() {
           </TableBody>
         </Table>
       </TableContainer>
+      {addForm ? (
+        <Box
+          component={Paper}
+          sx={{
+            minWidth: 300,
+            height: 300,
+            marginBottom: "20px",
+            padding: "20px",
+            marginLeft: "20px",
+            position: "relative",
+          }}
+        >
+          <NewTask setTasksList={setTasksList} />
+        </Box>
+      ) : null}
       {deletingTask ? (
         <ConfirmDelete
           handleDeleteTask={handleDeleteTask}
           setDeletingTask={setDeletingTask}
         />
       ) : null}
-      {editingTask ? <EditTask editingTask={editingTask} setEditingTask={setEditingTask} setTasksList={setTasksList} tasksList={tasksList}/> : null}
+      {editingTask ? (
+        <EditTask
+          editingTask={editingTask}
+          setEditingTask={setEditingTask}
+          setTasksList={setTasksList}
+          tasksList={tasksList}
+        />
+      ) : null}
     </div>
   );
 }

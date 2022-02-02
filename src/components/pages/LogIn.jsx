@@ -30,7 +30,7 @@ export function LogIn() {
 
   useEffect(() => {
  if (loggedIn) {
-      navigate("/data", { replace: true });
+      navigate("/todo", { replace: true });
     }
   }, [loggedIn]);
 
