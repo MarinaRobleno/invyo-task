@@ -33,7 +33,6 @@ export function MyData() {
   const [articlesCount, setArticlesCount] = useState(articles.length);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  console.log(tag);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);

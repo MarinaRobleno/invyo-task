@@ -6,22 +6,13 @@ import {
   TableHead,
   TableRow,
   Paper,
-  TableFooter,
-  TablePagination,
-  Chip,
   Box,
-  TextField,
   Button,
-  InputAdornment,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
 } from "@mui/material";
 import { MdOutlineAddCircle } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
-import { AiFillDelete, AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 import { EditTask } from "../EditTask";
 

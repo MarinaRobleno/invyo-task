@@ -41,7 +41,6 @@ export function EditTask({
         )
       );
       setEditingTask("");
-      console.log(tasksList)
     }
   };
 
