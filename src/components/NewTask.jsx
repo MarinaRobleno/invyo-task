@@ -31,6 +31,8 @@ export function NewTask({ setTasksList }) {
     } else {
       setTasksList((prev) => [...prev, newTask]);
       setOpen(true);
+      const newTaskForm = document.getElementById("new-task-form");
+      newTaskForm.reset();
     }
   };
 
@@ -57,6 +59,7 @@ export function NewTask({ setTasksList }) {
         </Alert>
       ) : null}
       <form
+        id="new-task-form"
         style={{
           display: "flex",
           flexDirection: "column",

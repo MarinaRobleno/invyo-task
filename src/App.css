@@ -34,11 +34,6 @@ a {
 .content {
   padding: 20px 250px;
 }
-@media only screen and (max-Width: 1600px ) {
-  .content {
-    padding: 20px;
-  }
-}
 
 .login-container {
   background-color: #ffffff;
@@ -69,4 +64,10 @@ a {
 
 .display-none{
     display: none;
+}
+
+@media only screen and (max-Width: 1600px ) {
+  .content {
+    padding: 20px;
+  }
 }
