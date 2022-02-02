@@ -61,8 +61,10 @@ export function MyData() {
     const currentContent = document.getElementById(e.target.id);
     if (currentContent.classList.contains("hide-content")) {
       currentContent.classList.remove("hide-content");
+      e.target.textContent = "Hide"
     } else {
       currentContent.classList.add("hide-content");
+      e.target.textContent = "Show More"
     }
   };
 
