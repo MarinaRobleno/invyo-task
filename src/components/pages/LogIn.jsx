@@ -65,7 +65,6 @@ export function LogIn() {
           Submit
         </Button>
       </form>
-      <div>test@invyo.io test123@</div>
     </div>
   );
 }
