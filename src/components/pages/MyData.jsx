@@ -13,15 +13,13 @@ import {
   Box,
   TextField,
   Button,
-  InputAdornment,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
 } from "@mui/material";
 import data from "../../data/data";
-import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
-import { AccountCircle } from "@mui/icons-material";
+import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export function MyData() {
@@ -33,11 +31,11 @@ export function MyData() {
   const [order, setOrder] = useState("");
   const [language, setLanguage] = useState("");
   const [tag, setTag] = useState("");
+  const [articlesCount, setArticlesCount] = useState(articles.length)
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleSearch = (e) => {
-    e.preventDefault();
     setSearch(e.target.value);
   };
 
@@ -96,11 +94,11 @@ export function MyData() {
             onChange={handleSearch}
           />
           <Button
-            style={{ fontWeight: "bold", maxWidth: "55px", height: "55px" }}
+            style={{ fontWeight: "bold", maxWidth: "55px", height: "55px", marginLeft: "10px" }}
             variant="outlined"
             onClick={handleClearSearch}
           >
-            <AiOutlineClose />
+            <AiOutlineClose style={{fontSize: "20px"}}/>
           </Button>
         </div>
         <div
@@ -122,14 +120,11 @@ export function MyData() {
               onChange={handleOrderAlphabetically}
               label="Order Alphabetically"
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value={"title"}>Title</MenuItem>
               <MenuItem value={"content"}>Content</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ width: "100%" }}>
+          <FormControl style={{ width: "100%", marginLeft: "10px" }}>
             <InputLabel id="language-filter">Select Language Filter</InputLabel>
             <Select
               labelId="language-filter"
@@ -146,7 +141,7 @@ export function MyData() {
               <MenuItem value={"it"}>Italian</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ width: "100%" }}>
+          <FormControl style={{ width: "100%", marginLeft: "10px" }}>
             <InputLabel id="tag-filter">Select Tag Filter</InputLabel>
             <Select
               labelId="tag-filter"
@@ -165,11 +160,16 @@ export function MyData() {
               ))}
             </Select>
           </FormControl>
-          <Link to='./network'>
+          <Link to="./network">
             <Button
               id="network-button"
               variant="contained"
-              style={{ marginLeft: "10px", width: "100px", height: '55px', fontWeight: "bold" }}
+              style={{
+                marginLeft: "10px",
+                width: "100px",
+                height: "55px",
+                fontWeight: "bold",
+              }}
             >
               Network
             </Button>
@@ -193,13 +193,7 @@ export function MyData() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
-              ? articles.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : articles
-            )
+            {articles
               .sort(function (a, b) {
                 if (order === "title") {
                   if (a.Title > b.Title) {
@@ -214,8 +208,6 @@ export function MyData() {
                   } else if (a.Content < b.Content) {
                     return -1;
                   }
-                  return 0;
-                } else {
                   return 0;
                 }
               })
@@ -270,13 +262,14 @@ export function MyData() {
                     )}
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
           </TableBody>
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={articles.length}
-                rowsPerPageOptions={[5, 10, 25, 100, articles.length]}
+                count={articlesCount}
+                rowsPerPageOptions={[5, 10, 25, 100, articlesCount]}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
