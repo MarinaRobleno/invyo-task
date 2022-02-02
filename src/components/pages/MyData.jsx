@@ -301,7 +301,13 @@ export function MyData() {
             <TableRow>
               <TablePagination
                 count={articlesCount}
-                rowsPerPageOptions={[5, 10, 25, 100, {value: -1, label: 'All'}]}
+                rowsPerPageOptions={[
+                  5,
+                  10,
+                  25,
+                  100,
+                  { value: -1, label: "All" },
+                ]}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

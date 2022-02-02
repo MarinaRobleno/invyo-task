@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export function LogIn() {
   const mailKey = "test@invyo.io";
   const passwordKey = "test123@";
-  const {loggedIn, setLoggedIn} = useContext(AuthContext);
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,12 +24,12 @@ export function LogIn() {
       setLoggedIn(true);
     } else {
       setError(true);
-      alert("Incorrect mail or password")
+      alert("Incorrect mail or password");
     }
   };
 
   useEffect(() => {
- if (loggedIn) {
+    if (loggedIn) {
       navigate("/todo", { replace: true });
     }
   }, [loggedIn]);
@@ -57,7 +57,11 @@ export function LogIn() {
           value={password}
           onChange={handlePasswordInput}
         />
-        <Button style={{fontWeight: 'bold'}} type="submit" variant="contained">
+        <Button
+          style={{ fontWeight: "bold" }}
+          type="submit"
+          variant="contained"
+        >
           Submit
         </Button>
       </form>

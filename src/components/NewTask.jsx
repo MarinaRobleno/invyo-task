@@ -42,7 +42,12 @@ export function NewTask({ setTasksList }) {
     <>
       {open ? (
         <Alert
-          style={{position: 'absolute', top: '305px', left: '0', width: '100%'}}
+          style={{
+            position: "absolute",
+            top: "305px",
+            left: "0",
+            width: "100%",
+          }}
           onClose={() => {
             setOpen(false);
           }}
