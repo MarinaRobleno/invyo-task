@@ -21,6 +21,7 @@ import {
 import data from "../../data/data";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 export function MyData() {
   const articles = data.articles;
@@ -31,7 +32,7 @@ export function MyData() {
   const [order, setOrder] = useState("");
   const [language, setLanguage] = useState("");
   const [tag, setTag] = useState("");
-  const [articlesCount, setArticlesCount] = useState(articles.length)
+  const [articlesCount, setArticlesCount] = useState(articles.length);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -54,6 +55,15 @@ export function MyData() {
 
   const handleTagFilter = (e) => {
     setTag(e.target.value);
+  };
+
+  const handleShowMore = (e) => {
+    const currentContent = document.getElementById(e.target.id);
+    if (currentContent.classList.contains("hide-content")) {
+      currentContent.classList.remove("hide-content");
+    } else {
+      currentContent.classList.add("hide-content");
+    }
   };
 
   const handleChangePage = (event, newPage) => {
@@ -94,11 +104,16 @@ export function MyData() {
             onChange={handleSearch}
           />
           <Button
-            style={{ fontWeight: "bold", maxWidth: "55px", height: "55px", marginLeft: "10px" }}
+            style={{
+              fontWeight: "bold",
+              maxWidth: "55px",
+              height: "55px",
+              marginLeft: "10px",
+            }}
             variant="outlined"
             onClick={handleClearSearch}
           >
-            <AiOutlineClose style={{fontSize: "20px"}}/>
+            <AiOutlineClose style={{ fontSize: "20px" }} />
           </Button>
         </div>
         <div
@@ -245,15 +260,21 @@ export function MyData() {
                     {article.Title}
                   </TableCell>
                   <TableCell
+                    id={articles.indexOf(article)}
                     align="left"
+                    className="hide-content"
                     style={{
                       maxWidth: "800px",
-                      textOverflow: "ellipsis",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
                     }}
                   >
-                    {article.Content}
+                    {article.Content}{" "}
+                    <div
+                      id={articles.indexOf(article)}
+                      style={{ fontWeight: "bold", cursor: "pointer", textDecoration: "underline" }}
+                      onClick={handleShowMore}
+                    >
+                      Show more
+                    </div>
                   </TableCell>
                   <TableCell align="left">{article.Language}</TableCell>
                   <TableCell align="left">
