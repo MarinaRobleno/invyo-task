@@ -271,7 +271,7 @@ export function MyData() {
                     align="left"
                     className="hide-content"
                     style={{
-                      maxWidth: "800px",
+                      maxWidth: "700px",
                     }}
                   >
                     {article.Content}{" "}
