@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { AuthContext } from "../helpers/Context";
 import { useNavigate } from "react-router-dom";
+import { fontTheme } from "../helpers/Theme";
 
 export function LogIn() {
   const mailKey = "test@invyo.io";
@@ -36,9 +37,10 @@ export function LogIn() {
 
   return (
     <div className="login-container">
-      <h2>Log In</h2>
+      <h2 style={{ fontFamily: "Poppins" }}>Log In</h2>
       <form className="login-form" onSubmit={handleLoginSubmit}>
         <TextField
+          theme={fontTheme}
           className="login-field"
           id="filled-basic"
           error={error}
@@ -48,6 +50,7 @@ export function LogIn() {
           onChange={handleMailInput}
         />
         <TextField
+          theme={fontTheme}
           className="login-field"
           id="filled-basic"
           error={error}
@@ -58,6 +61,7 @@ export function LogIn() {
           onChange={handlePasswordInput}
         />
         <Button
+          theme={fontTheme}
           style={{ fontWeight: "bold" }}
           type="submit"
           variant="contained"

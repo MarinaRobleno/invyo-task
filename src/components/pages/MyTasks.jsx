@@ -163,6 +163,15 @@ export function MyTasks() {
                   return task.deadline > today;
                 }
               })
+              .sort(function (a, b) {
+                if (a.deadline > b.deadline) {
+                  return 1;
+                }
+                if (a.deadline < b.deadline) {
+                  return -1;
+                }
+                return 0;
+              })
               .map((task) => (
                 <TableRow key={tasksList.indexOf(task)} theme={fontTheme}>
                   <TableCell component="th" scope="row" theme={fontTheme}>
