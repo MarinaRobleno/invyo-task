@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { fontTheme } from "./helpers/Theme";
 
 export function EditTask({
   editingTask,
@@ -63,6 +64,7 @@ export function EditTask({
       }}
     >
       <div
+        theme={fontTheme}
         style={{
           display: "flex",
           alignItems: "center",
@@ -92,8 +94,10 @@ export function EditTask({
           style={{ width: "100%" }}
           defaultValue={editingTask.title}
           onChange={handleEditTitle}
+          theme={fontTheme}
         />
         <TextField
+          theme={fontTheme}
           label="Description"
           size="small"
           style={{ width: "100%" }}
@@ -101,6 +105,7 @@ export function EditTask({
           onChange={handleEditDescription}
         />
         <TextField
+          theme={fontTheme}
           type="date"
           size="small"
           style={{ width: "100%" }}
@@ -108,6 +113,7 @@ export function EditTask({
           onChange={handleEditDeadline}
         />
         <Button
+          theme={fontTheme}
           variant="contained"
           type="submit"
           style={{

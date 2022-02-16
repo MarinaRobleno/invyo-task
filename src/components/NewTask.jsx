@@ -33,6 +33,7 @@ export function NewTask({ setTasksList }) {
       setOpen(true);
       const newTaskForm = document.getElementById("new-task-form");
       newTaskForm.reset();
+      setNewTask({})
     }
   };
 

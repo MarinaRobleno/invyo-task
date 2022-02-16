@@ -15,6 +15,7 @@ import { NewTask } from "../NewTask";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 import { EditTask } from "../EditTask";
+import { fontTheme } from "../helpers/Theme";
 
 export function MyTasks() {
   const saveState = (tasks) => {
@@ -26,10 +27,10 @@ export function MyTasks() {
       : [];
   };
   const [tasksList, setTasksList] = useState(retrieveState());
-  const [showCompleted, setShowCompleted] = useState("");
-  const [addForm, setAddForm] = useState("");
-  const [deletingTask, setDeletingTask] = useState("");
-  const [editingTask, setEditingTask] = useState("");
+  const [showCompleted, setShowCompleted] = useState(false);
+  const [addForm, setAddForm] = useState(false);
+  const [deletingTask, setDeletingTask] = useState(false);
+  const [editingTask, setEditingTask] = useState(null);
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -38,23 +39,23 @@ export function MyTasks() {
 
   const handleOpenAddForm = () => {
     if (addForm) {
-      setAddForm("");
+      setAddForm(false);
     } else {
-      setAddForm("show");
+      setAddForm(true);
     }
   };
 
   const handleShowAll = () => {
     if (showCompleted) {
-      setShowCompleted("");
+      setShowCompleted(false);
     } else {
-      setShowCompleted("all");
+      setShowCompleted(true);
     }
   };
 
   const handleDeleteTask = () => {
     setTasksList(tasksList.filter((task) => task.id !== deletingTask));
-    setDeletingTask("");
+    setDeletingTask(false);
   };
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export function MyTasks() {
         >
           <Button
             variant="contained"
+            theme={fontTheme}
             style={{
               marginLeft: "10px",
               width: "100px",
@@ -94,6 +96,7 @@ export function MyTasks() {
           </Button>
           <Button
             variant="contained"
+            theme={fontTheme}
             style={{
               marginLeft: "10px",
               maxWidth: "230px",
@@ -113,16 +116,32 @@ export function MyTasks() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+                theme={fontTheme}
+              >
                 Title
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+                theme={fontTheme}
+              >
                 Description
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+                theme={fontTheme}
+              >
                 Deadline
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell
+                align="left"
+                style={{ fontWeight: "bold" }}
+                theme={fontTheme}
+              >
                 Status
               </TableCell>
               <TableCell
@@ -138,28 +157,29 @@ export function MyTasks() {
           <TableBody>
             {tasksList
               .filter((task) => {
-                if (showCompleted === "all") {
+                if (showCompleted === true) {
                   return task;
-                } else if (showCompleted === "") {
+                } else if (showCompleted === false) {
                   return task.deadline > today;
                 }
               })
               .map((task) => (
-                <TableRow key={tasksList.indexOf(task)}>
-                  <TableCell component="th" scope="row">
+                <TableRow key={tasksList.indexOf(task)} theme={fontTheme}>
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     {task.title}
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     {task.description}
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     {task.deadline}
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     {task.deadline >= today ? "in progress" : "completed"}
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     <Button
+                      theme={fontTheme}
                       id={task.id}
                       style={{ cursor: "pointer" }}
                       onClick={() =>
@@ -176,6 +196,7 @@ export function MyTasks() {
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <Button
+                      theme={fontTheme}
                       id={task.id}
                       style={{ cursor: "pointer" }}
                       onClick={(e) => setDeletingTask(e.target.id)}

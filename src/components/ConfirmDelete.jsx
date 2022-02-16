@@ -1,9 +1,11 @@
 import { Box, Button, Paper } from "@mui/material";
 import React from "react";
+import { fontTheme } from "./helpers/Theme";
 
 export function ConfirmDelete({ handleDeleteTask, setDeletingTask }) {
   return (
     <Box
+      theme={fontTheme}
       component={Paper}
       style={{
         left: "50%",
@@ -29,10 +31,18 @@ export function ConfirmDelete({ handleDeleteTask, setDeletingTask }) {
           marginTop: "20px",
         }}
       >
-        <Button variant="contained" onClick={handleDeleteTask}>
+        <Button
+          variant="contained"
+          onClick={handleDeleteTask}
+          theme={fontTheme}
+        >
           Yes
         </Button>
-        <Button variant="contained" onClick={() => setDeletingTask("")}>
+        <Button
+          variant="contained"
+          onClick={() => setDeletingTask(false)}
+          theme={fontTheme}
+        >
           No
         </Button>
       </div>

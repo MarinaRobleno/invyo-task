@@ -21,13 +21,14 @@ import {
 import data from "../../data/data";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { fontTheme } from "../helpers/Theme";
 
 export function MyData() {
   const articles = data.articles;
   const [topicArray, setTopicArray] = useState([]);
   const [uniqueTopicArray, setUniqueTopicArray] = useState([]);
-  const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("");
+  const [search, setSearch] = useState(null);
+  const [order, setOrder] = useState('');
   const [language, setLanguage] = useState("");
   const [tag, setTag] = useState([]);
   const [articlesCount, setArticlesCount] = useState(articles.length);
@@ -39,8 +40,8 @@ export function MyData() {
   };
 
   const handleClearSearch = () => {
-    document.getElementById("search-bar").value = "";
-    setSearch("");
+    document.getElementById("search-bar").value = null;
+    setSearch(null);
   };
 
   const handleOrderAlphabetically = (e) => {
@@ -104,6 +105,7 @@ export function MyData() {
       >
         <div style={{ display: "flex", width: "100%" }} id="search-div">
           <TextField
+          theme={fontTheme}
             style={{ width: "100%", marginBottom: "20px" }}
             id="search-bar"
             label="Search Title or Content"
@@ -132,7 +134,7 @@ export function MyData() {
           id="filter-div"
         >
           <FormControl style={{ width: "100%" }}>
-            <InputLabel id="order-alphabetically">
+            <InputLabel id="order-alphabetically" theme={fontTheme}>
               Order Alphabetically
             </InputLabel>
             <Select
@@ -142,12 +144,12 @@ export function MyData() {
               onChange={handleOrderAlphabetically}
               label="Order Alphabetically"
             >
-              <MenuItem value={"title"}>Title</MenuItem>
-              <MenuItem value={"content"}>Content</MenuItem>
+              <MenuItem value={"title"} theme={fontTheme}>Title</MenuItem>
+              <MenuItem value={"content"} theme={fontTheme}>Content</MenuItem>
             </Select>
           </FormControl>
           <FormControl style={{ width: "100%", marginLeft: "10px" }}>
-            <InputLabel id="language-filter">Select Language Filter</InputLabel>
+            <InputLabel id="language-filter" theme={fontTheme}>Select Language Filter</InputLabel>
             <Select
               labelId="language-filter"
               id="demo-simple-select-standard"
@@ -158,13 +160,13 @@ export function MyData() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={"en"}>English</MenuItem>
-              <MenuItem value={"es"}>Spanish</MenuItem>
-              <MenuItem value={"it"}>Italian</MenuItem>
+              <MenuItem value={"en"} theme={fontTheme}>English</MenuItem>
+              <MenuItem value={"es"} theme={fontTheme}>Spanish</MenuItem>
+              <MenuItem value={"it"} theme={fontTheme}>Italian</MenuItem>
             </Select>
           </FormControl>
           <FormControl style={{ width: "100%", marginLeft: "10px" }}>
-            <InputLabel id="tag-filter">Select Tag Filter</InputLabel>
+            <InputLabel id="tag-filter" theme={fontTheme}>Select Tag Filter</InputLabel>
             <Select
               labelId="tag-filter"
               id="demo-simple-select-standard"
@@ -174,7 +176,7 @@ export function MyData() {
               label="Tag Filter"
             >
               {uniqueTopicArray.map((topic) => (
-                <MenuItem key={topic} value={topic}>
+                <MenuItem key={topic} value={topic} theme={fontTheme}>
                   {topic}
                 </MenuItem>
               ))}
@@ -190,6 +192,7 @@ export function MyData() {
                 height: "55px",
                 fontWeight: "bold",
               }}
+              theme={fontTheme}
             >
               Network
             </Button>
@@ -201,13 +204,13 @@ export function MyData() {
           <TableHead>
             <TableRow>
               <TableCell style={{ fontWeight: "bold" }}>Title</TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell align="left" style={{ fontWeight: "bold" }} theme={fontTheme}>
                 Content
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell align="left" style={{ fontWeight: "bold" }} theme={fontTheme}>
                 Language
               </TableCell>
-              <TableCell align="left" style={{ fontWeight: "bold" }}>
+              <TableCell align="left" style={{ fontWeight: "bold" }} theme={fontTheme}>
                 Tags
               </TableCell>
             </TableRow>
@@ -248,7 +251,7 @@ export function MyData() {
                 }
               })
               .filter((article) => {
-                if (search === "") {
+                if (search === null) {
                   return article;
                 } else if (
                   String(article.Title)
@@ -263,7 +266,7 @@ export function MyData() {
               })
               .map((article) => (
                 <TableRow key={articles.indexOf(article)}>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" theme={fontTheme}>
                     {article.Title}
                   </TableCell>
                   <TableCell
@@ -273,6 +276,7 @@ export function MyData() {
                     style={{
                       maxWidth: "700px",
                     }}
+                    theme={fontTheme}
                   >
                     {article.Content}{" "}
                     <div
@@ -287,10 +291,10 @@ export function MyData() {
                       Show more
                     </div>
                   </TableCell>
-                  <TableCell align="left">{article.Language}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align="left" theme={fontTheme}>{article.Language}</TableCell>
+                  <TableCell align="left" theme={fontTheme}>
                     {article.Tags.topic.map((tag) => (
-                      <Chip label={tag} />
+                      <Chip label={tag} theme={fontTheme}/>
                     ))}
                   </TableCell>
                 </TableRow>
@@ -312,6 +316,7 @@ export function MyData() {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                theme={fontTheme}
               />
             </TableRow>
           </TableFooter>
