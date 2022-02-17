@@ -1,43 +1,47 @@
 import React from "react";
-import { Button } from "@mui/material/";
+import { Button, ThemeProvider } from "@mui/material/";
 import { AiOutlineLogout } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { fontTheme } from "./helpers/Theme";
+import { Link, useLocation } from "react-router-dom";
+import { fontTheme, colorTheme } from "./helpers/Theme";
 
 export function NavBar({ setLoggedIn }) {
+  let location = useLocation();
+  let path = location.pathname;
   return (
     <header>
-      <div className="button-line">
-        <Link to="/data">
-          <Button
-            theme={fontTheme}
-            style={{ fontWeight: "bold" }}
-            className="nav-button"
-            variant="contained"
-          >
-            Data
-          </Button>
-        </Link>
-        <Link to="/todo">
-          <Button
-            theme={fontTheme}
-            style={{ fontWeight: "bold" }}
-            className="nav-button"
-            variant="contained"
-          >
-            My Tasks
-          </Button>
-        </Link>
-      </div>
-      <Button
-        theme={fontTheme}
-        style={{ minWidth: "30px" }}
-        className="logout-button"
-        variant="contained"
-        onClick={() => setLoggedIn(false)}
-      >
-        <AiOutlineLogout className="logout-icon" />
-      </Button>
+      <ThemeProvider theme={fontTheme, colorTheme}>
+        <div className="button-line">
+          <Link to="/data">
+            <Button
+              style={{ fontWeight: "bold", fontFamily: 'Poppins', color: 'helperColor', height: '40px' }}
+              className="nav-button"
+              variant={path == '/data' ? "contained" : "outlined"}
+              color="mainColor"
+            >
+              Data
+            </Button>
+          </Link>
+          <Link to="/todo">
+            <Button
+              style={{ fontWeight: "bold", fontFamily: 'Poppins', color: 'helperColor', height: '40px' }}
+              className="nav-button"
+              variant={path == '/todo' ? "contained" : "outlined"}
+              color="mainColor"
+            >
+              My Tasks
+            </Button>
+          </Link>
+        </div>
+        <Button
+          style={{ minWidth: "30px", fontFamily: 'Poppins', color: 'helperColor', borderRadius: '100%' }}
+          className="logout-button"
+          variant="contained"
+          color="mainColor"
+          onClick={() => setLoggedIn(false)}
+        >
+          <AiOutlineLogout className="logout-icon" />
+        </Button>
+      </ThemeProvider>
     </header>
   );
 }

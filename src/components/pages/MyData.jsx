@@ -99,7 +99,7 @@ export function MyData() {
         sx={{
           minWidth: 650,
           height: 200,
-          marginBottom: "20px",
+          margin: "70px 0 20px",
           padding: "20px",
         }}
       >

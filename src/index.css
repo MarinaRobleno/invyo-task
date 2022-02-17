@@ -8,9 +8,10 @@ html, *{
 body {
   width: 100%;
   margin: 0 auto;
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #EFC9AF;
 }
 
 code {

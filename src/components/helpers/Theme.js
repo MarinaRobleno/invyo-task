@@ -17,3 +17,20 @@ export const fontTheme = createTheme({
       ].join(','),
     },
   });
+
+export const colorTheme = createTheme({
+  palette: {
+    mainColor: {
+      main: '#EFC9AF',
+      contrastText: '#104C91',
+    },
+    secondaryColor: {
+        main: '#104C91',
+        contrastText: '#fff'
+    },
+    helperColor: {
+      main: '#1F8AC0',
+      contrastText: '#fff'
+    }
+  },
+})

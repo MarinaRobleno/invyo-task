@@ -8,6 +8,7 @@ import {
   Paper,
   Box,
   Button,
+  ThemeProvider,
 } from "@mui/material";
 import { MdOutlineAddCircle } from "react-icons/md";
 import React, { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ import { NewTask } from "../NewTask";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 import { EditTask } from "../EditTask";
-import { fontTheme } from "../helpers/Theme";
+import { fontTheme, colorTheme } from "../helpers/Theme";
 
 export function MyTasks() {
   const saveState = (tasks) => {
@@ -64,189 +65,194 @@ export function MyTasks() {
 
   return (
     <div style={{ display: "flex" }}>
-      <TableContainer
-        component={Paper}
-        style={{ width: "100%", height: "100%" }}
-        sx={{
-          minWidth: 650,
-          marginBottom: "20px",
-          padding: "20px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <Button
-            variant="contained"
-            theme={fontTheme}
-            style={{
-              marginLeft: "10px",
-              width: "100px",
-              height: "55px",
-              fontWeight: "bold",
-            }}
-            onClick={handleShowAll}
-          >
-            {showCompleted ? "Hide Completed" : "Show Completed"}
-          </Button>
-          <Button
-            variant="contained"
-            theme={fontTheme}
-            style={{
-              marginLeft: "10px",
-              maxWidth: "230px",
-              height: "30px",
-              fontWeight: "bold",
-            }}
-            onClick={handleOpenAddForm}
-          >
-            {addForm ? (
-              <AiFillCloseCircle style={{ fontSize: "20px" }} />
-            ) : (
-              <MdOutlineAddCircle style={{ fontSize: "20px" }} />
-            )}
-          </Button>
-        </div>
-
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-                theme={fontTheme}
-              >
-                Title
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-                theme={fontTheme}
-              >
-                Description
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-                theme={fontTheme}
-              >
-                Deadline
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-                theme={fontTheme}
-              >
-                Status
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-              ></TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold" }}
-              ></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {tasksList
-              .filter((task) => {
-                if (showCompleted === true) {
-                  return task;
-                } else if (showCompleted === false) {
-                  return task.deadline > today;
-                }
-              })
-              .sort(function (a, b) {
-                if (a.deadline > b.deadline) {
-                  return 1;
-                }
-                if (a.deadline < b.deadline) {
-                  return -1;
-                }
-                return 0;
-              })
-              .map((task) => (
-                <TableRow key={tasksList.indexOf(task)} theme={fontTheme}>
-                  <TableCell component="th" scope="row" theme={fontTheme}>
-                    {task.title}
-                  </TableCell>
-                  <TableCell component="th" scope="row" theme={fontTheme}>
-                    {task.description}
-                  </TableCell>
-                  <TableCell component="th" scope="row" theme={fontTheme}>
-                    {task.deadline}
-                  </TableCell>
-                  <TableCell component="th" scope="row" theme={fontTheme}>
-                    {task.deadline >= today ? "in progress" : "completed"}
-                  </TableCell>
-                  <TableCell component="th" scope="row" theme={fontTheme}>
-                    <Button
-                      theme={fontTheme}
-                      id={task.id}
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        setEditingTask({
-                          id: task.id,
-                          title: task.title,
-                          description: task.description,
-                          deadline: task.deadline,
-                        })
-                      }
-                    >
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <Button
-                      theme={fontTheme}
-                      id={task.id}
-                      style={{ cursor: "pointer" }}
-                      onClick={(e) => setDeletingTask(e.target.id)}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      {addForm ? (
-        <Box
+      <ThemeProvider theme={(fontTheme, colorTheme)}>
+        <TableContainer
           component={Paper}
+          style={{ width: "100%", height: "100%" }}
           sx={{
-            minWidth: 300,
-            height: 300,
-            marginBottom: "20px",
+            minWidth: 650,
+            margin: "70px 0 20px",
             padding: "20px",
-            marginLeft: "20px",
-            position: "relative",
+            backgroundColor: "#104C91"
           }}
         >
-          <NewTask setTasksList={setTasksList} />
-        </Box>
-      ) : null}
-      {deletingTask ? (
-        <ConfirmDelete
-          handleDeleteTask={handleDeleteTask}
-          setDeletingTask={setDeletingTask}
-        />
-      ) : null}
-      {editingTask ? (
-        <EditTask
-          editingTask={editingTask}
-          setEditingTask={setEditingTask}
-          setTasksList={setTasksList}
-          tasksList={tasksList}
-        />
-      ) : null}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Button
+              variant="contained"
+              style={{
+                marginLeft: "10px",
+                width: "150px",
+                height: "40px",
+                fontWeight: "bold",
+                fontFamily: "Poppins",
+                fontSize: "12px",
+              }}
+              color="mainColor"
+              onClick={handleShowAll}
+            >
+              {showCompleted ? "Hide Completed" : "Show Completed"}
+            </Button>
+            <Button
+              variant="contained"
+              style={{
+                marginLeft: "10px",
+                minWidth: '10px',
+                height: '52px',
+                fontWeight: "bold",
+                borderRadius: '100%'
+              }}
+              color="mainColor"
+              onClick={handleOpenAddForm}
+            >
+              {addForm ? (
+                <AiFillCloseCircle style={{ fontSize: "20px" }} />
+              ) : (
+                <MdOutlineAddCircle style={{ fontSize: "20px" }} />
+              )}
+            </Button>
+          </div>
+
+          <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                >
+                  Title
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                >
+                  Description
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                >
+                  Deadline
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                >
+                  Status
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", width: '20px' }}
+                ></TableCell>
+                <TableCell
+                  align="left"
+                  style={{ fontWeight: "bold", width: '20px' }}
+                ></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tasksList
+                .filter((task) => {
+                  if (showCompleted === true) {
+                    return task;
+                  } else if (showCompleted === false) {
+                    return task.deadline > today;
+                  }
+                })
+                .sort(function (a, b) {
+                  if (a.deadline > b.deadline) {
+                    return 1;
+                  }
+                  if (a.deadline < b.deadline) {
+                    return -1;
+                  }
+                  return 0;
+                })
+                .map((task) => (
+                  <TableRow key={tasksList.indexOf(task)}>
+                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                      {task.title}
+                    </TableCell>
+                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                      {task.description}
+                    </TableCell>
+                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                      {task.deadline}
+                    </TableCell>
+                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                      {task.deadline >= today ? "in progress" : "completed"}
+                    </TableCell>
+                    <TableCell component="th" scope="row" >
+                      <Button
+                        color='helperColor'
+                        variant="contained"
+                        id={task.id}
+                        style={{ cursor: "pointer", fontFamily: 'Poppins' }}
+                        onClick={() =>
+                          setEditingTask({
+                            id: task.id,
+                            title: task.title,
+                            description: task.description,
+                            deadline: task.deadline,
+                          })
+                        }
+                      >
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      <Button
+                        color='helperColor'
+                        variant="contained"
+                        id={task.id}
+                        style={{ cursor: "pointer", fontFamily: 'Poppins' }}
+                        onClick={(e) => setDeletingTask(e.target.id)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {addForm ? (
+          <Box
+            component={Paper}
+            sx={{
+              minWidth: 300,
+              height: 300,
+              margin: "70px 0 20px",
+              padding: "20px",
+              marginLeft: "20px",
+              position: "relative",
+              backgroundColor: '#104C91'
+            }}
+          >
+            <NewTask setTasksList={setTasksList} />
+          </Box>
+        ) : null}
+        {deletingTask ? (
+          <ConfirmDelete
+            handleDeleteTask={handleDeleteTask}
+            setDeletingTask={setDeletingTask}
+          />
+        ) : null}
+        {editingTask ? (
+          <EditTask
+            editingTask={editingTask}
+            setEditingTask={setEditingTask}
+            setTasksList={setTasksList}
+            tasksList={tasksList}
+          />
+        ) : null}
+      </ThemeProvider>
     </div>
   );
 }
