@@ -173,6 +173,16 @@ export function MyTasks() {
                 </TableCell>
                 <TableCell
                   align="left"
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Poppins",
+                  }}
+                >
+                  Progress
+                </TableCell>
+                <TableCell
+                  align="left"
                   style={{ fontWeight: "bold", width: "20px" }}
                 ></TableCell>
                 <TableCell
@@ -218,7 +228,7 @@ export function MyTasks() {
               backgroundColor: "#104C91",
             }}
           >
-            <NewTask setTasksList={setTasksList} />
+            <NewTask setTasksList={setTasksList} today={today} />
           </Box>
         ) : null}
         {deletingTask ? (

@@ -1,7 +1,14 @@
 import React from "react";
 import { TableRow, TableCell, Button } from "@mui/material";
+import ProgressBar from "@ramonak/react-progress-bar";
 
-export function MyTasksRow({tasksList, task, today, setEditingTask, setDeletingTask}) {
+export function MyTasksRow({
+  tasksList,
+  task,
+  today,
+  setEditingTask,
+  setDeletingTask,
+}) {
   return (
     <TableRow key={tasksList.indexOf(task)}>
       <TableCell
@@ -35,6 +42,27 @@ export function MyTasksRow({tasksList, task, today, setEditingTask, setDeletingT
         style={{ color: "#104C91", fontFamily: "Poppins" }}
       >
         {task.deadline >= today ? "in progress" : "completed"}
+      </TableCell>
+      <TableCell
+        component="th"
+        scope="row"
+        style={{ color: "#104C91", fontFamily: "Poppins" }}
+      >
+        <ProgressBar
+          completed={
+            task.deadline <= today
+              ? 100
+              : 100 -
+                (
+                  ((new Date(task.deadline) - new Date(today)) * 100) /
+                  (new Date(task.deadline) - new Date(task.dateAdded))
+                ).toFixed(0)
+          }
+          width="70%"
+          height="15px"
+          bgColor="#1F8AC0"
+          labelSize="12px"
+        />
       </TableCell>
       <TableCell component="th" scope="row">
         <Button

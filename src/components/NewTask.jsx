@@ -4,13 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import { colorTheme, fontTheme } from "./helpers/Theme";
 import { addError, addSuccess } from "./helpers/Toasts";
 
-export function NewTask({ setTasksList }) {
+export function NewTask({ setTasksList, today }) {
   const [error, setError] = useState(false);
   const [newTask, setNewTask] = useState({
     id: "",
     title: "",
     description: "",
     deadline: "",
+    dateAdded: today
   });
 
   const handleNewTitle = (e) => {
