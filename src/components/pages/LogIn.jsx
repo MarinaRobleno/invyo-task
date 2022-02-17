@@ -43,12 +43,12 @@ export function LogIn() {
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "white",
-                backgroundColor: "#1F8AC0",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "white" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
             color="mainColor"
             className="login-field"
@@ -63,12 +63,12 @@ export function LogIn() {
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "white",
-                backgroundColor: "#1F8AC0",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "white" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
             color="mainColor"
             className="login-field"
@@ -81,10 +81,10 @@ export function LogIn() {
             onChange={handlePasswordInput}
           />
           <Button
-            style={{ fontWeight: "bold", fontFamily: 'Poppins' }}
+            style={{ fontWeight: "bold", fontFamily: 'Poppins', width: '50%', margin: '0 auto' }}
             type="submit"
             variant="contained"
-            color="mainColor"
+            color="helperColor"
           >
             Submit
           </Button>

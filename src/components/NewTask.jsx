@@ -5,6 +5,7 @@ import { colorTheme, fontTheme } from "./helpers/Theme";
 
 export function NewTask({ setTasksList }) {
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
   const [newTask, setNewTask] = useState({
     id: "",
     title: "",
@@ -28,7 +29,7 @@ export function NewTask({ setTasksList }) {
   const handleSubmitNewTask = (e) => {
     e.preventDefault();
     if (!newTask.title || !newTask.description || !newTask.deadline) {
-      alert("Please complete the fields");
+      setError(true);
     } else {
       setTasksList((prev) => [...prev, newTask]);
       setOpen(true);
@@ -75,45 +76,48 @@ export function NewTask({ setTasksList }) {
             label="Title"
             size="small"
             onChange={handleNewTitle}
+            error={error}
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "white",
-                backgroundColor: "#1F8AC0",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "white" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <TextField
             label="Description"
             size="small"
             onChange={handleNewDescription}
+            error={error}
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "white",
-                backgroundColor: "#1F8AC0",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "white" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <TextField
             type="date"
             size="small"
             onChange={handleNewDeadline}
+            error={error}
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "white",
-                backgroundColor: "#1F8AC0",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "white" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <Button

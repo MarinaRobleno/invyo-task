@@ -179,7 +179,7 @@ export function MyTasks() {
                     <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
                       {task.title}
                     </TableCell>
-                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins', maxWidth: '300px'}}>
                       {task.description}
                     </TableCell>
                     <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
@@ -190,7 +190,7 @@ export function MyTasks() {
                     </TableCell>
                     <TableCell component="th" scope="row" >
                       <Button
-                        color='helperColor'
+                        color='mainColor'
                         variant="contained"
                         id={task.id}
                         style={{ cursor: "pointer", fontFamily: 'Poppins' }}
@@ -208,7 +208,7 @@ export function MyTasks() {
                     </TableCell>
                     <TableCell component="th" scope="row">
                       <Button
-                        color='helperColor'
+                        color='mainColor'
                         variant="contained"
                         id={task.id}
                         style={{ cursor: "pointer", fontFamily: 'Poppins' }}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Box, Button, Paper, TextField } from "@mui/material";
+import { Box, Button, Paper, TextField, ThemeProvider } from "@mui/material";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { fontTheme } from "./helpers/Theme";
+import { colorTheme, fontTheme } from "./helpers/Theme";
 
 export function EditTask({
   editingTask,
@@ -46,85 +46,119 @@ export function EditTask({
   };
 
   return (
-    <Box
-      component={Paper}
-      style={{
-        left: "50%",
-        marginLeft: "-150px",
-        top: "50%",
-        marginTop: "-140px",
-      }}
-      sx={{
-        position: "absolute",
-        minWidth: 300,
-        height: 280,
-        marginBottom: "20px",
-        padding: "20px",
-        marginRight: "20px",
-      }}
-    >
-      <div
-        theme={fontTheme}
+    <ThemeProvider theme={fontTheme, colorTheme}>
+      <Box
+        component={Paper}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          left: "50%",
+          marginLeft: "-150px",
+          top: "50%",
+          marginTop: "-150px",
+          backgroundColor: "#EFC9AF"
+        }}
+        sx={{
+          position: "absolute",
+          minWidth: 300,
+          height: 300,
+          marginBottom: "20px",
+          padding: "20px",
+          marginRight: "20px",
         }}
       >
-        Edit Task
-        <AiFillCloseCircle
-          style={{ fontSize: "20px", cursor: "pointer" }}
-          onClick={() => setEditingTask("")}
-        />
-      </div>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
-        }}
-        onSubmit={handleSubmitEditTask}
-      >
-        <TextField
-          label="Title"
-          size="small"
-          style={{ width: "100%" }}
-          defaultValue={editingTask.title}
-          onChange={handleEditTitle}
-          theme={fontTheme}
-        />
-        <TextField
-          theme={fontTheme}
-          label="Description"
-          size="small"
-          style={{ width: "100%" }}
-          defaultValue={editingTask.description}
-          onChange={handleEditDescription}
-        />
-        <TextField
-          theme={fontTheme}
-          type="date"
-          size="small"
-          style={{ width: "100%" }}
-          defaultValue={editingTask.deadline}
-          onChange={handleEditDeadline}
-        />
-        <Button
-          theme={fontTheme}
-          variant="contained"
-          type="submit"
+        <div
           style={{
-            width: "120px",
-            height: "55px",
-            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            fontFamily: 'Poppins',
+            fontWeight: '600',
+            color:'#104C91'
           }}
         >
-          Confirm Changes
-        </Button>
-      </form>
-    </Box>
+          Edit Task
+          <AiFillCloseCircle
+            style={{ fontSize: "20px", cursor: "pointer" }}
+            onClick={() => setEditingTask("")}
+          />
+        </div>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          }}
+          onSubmit={handleSubmitEditTask}
+        >
+          <TextField
+            label="Title"
+            size="small"
+            style={{ width: "100%" }}
+            defaultValue={editingTask.title}
+            onChange={handleEditTitle}
+            InputProps={{
+              style: {
+                fontFamily: "Poppins",
+                color: "#EFC9AF",
+                backgroundColor: "#104C91",
+              },
+            }}
+            InputLabelProps={{
+              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+            }}
+          />
+          <TextField
+            label="Description"
+            size="small"
+            style={{ width: "100%" }}
+            defaultValue={editingTask.description}
+            onChange={handleEditDescription}
+            InputProps={{
+              style: {
+                fontFamily: "Poppins",
+                color: "#EFC9AF",
+                backgroundColor: "#104C91",
+              },
+            }}
+            InputLabelProps={{
+              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+            }}
+          />
+          <TextField
+            type="date"
+            size="small"
+            style={{ width: "100%" }}
+            defaultValue={editingTask.deadline}
+            onChange={handleEditDeadline}
+            InputProps={{
+              style: {
+                fontFamily: "Poppins",
+                color: "#EFC9AF",
+                backgroundColor: "#104C91",
+              },
+            }}
+            InputLabelProps={{
+              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+            }}
+          />
+          <Button
+            variant="contained"
+            color='helperColor'
+            type="submit"
+            style={{
+              width: "120px",
+              height: "40px",
+              fontWeight: "bold",
+              fontFamily: 'Poppins',
+              marginBottom: '10px'
+            }}
+          >
+            Confirm
+          </Button>
+        </form>
+      </Box>
+    </ThemeProvider>
   );
 }
