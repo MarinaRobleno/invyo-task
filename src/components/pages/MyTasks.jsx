@@ -17,6 +17,8 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 import { EditTask } from "../EditTask";
 import { fontTheme, colorTheme } from "../helpers/Theme";
+import { deleteError, deleteSuccess } from "../helpers/Toasts";
+import { MyTasksRow } from "../MyTasksRow";
 
 export function MyTasks() {
   const saveState = (tasks) => {
@@ -55,8 +57,13 @@ export function MyTasks() {
   };
 
   const handleDeleteTask = () => {
-    setTasksList(tasksList.filter((task) => task.id !== deletingTask));
-    setDeletingTask(false);
+    try {
+      setTasksList(tasksList.filter((task) => task.id !== deletingTask));
+      setDeletingTask(false);
+      deleteSuccess();
+    } catch (err) {
+      deleteError();
+    }
   };
 
   useEffect(() => {
@@ -72,7 +79,7 @@ export function MyTasks() {
           sx={{
             minWidth: 650,
             margin: "70px 0 20px",
-            backgroundColor: "#104C91"
+            backgroundColor: "#104C91",
           }}
         >
           <div
@@ -102,10 +109,10 @@ export function MyTasks() {
               variant="contained"
               style={{
                 margin: "20px",
-                minWidth: '10px',
-                height: '52px',
+                minWidth: "10px",
+                height: "52px",
                 fontWeight: "bold",
-                borderRadius: '100%'
+                borderRadius: "100%",
               }}
               color="mainColor"
               onClick={handleOpenAddForm}
@@ -118,44 +125,63 @@ export function MyTasks() {
             </Button>
           </div>
 
-          <Table sx={{ minWidth: 650, padding: "20px" }} aria-label="simple table" >
+          <Table
+            sx={{ minWidth: 650, padding: "20px" }}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Poppins",
+                  }}
                 >
                   Title
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Poppins",
+                  }}
                 >
                   Description
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Poppins",
+                  }}
                 >
                   Deadline
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", color: 'white', fontFamily: 'Poppins' }}
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Poppins",
+                  }}
                 >
                   Status
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", width: '20px' }}
+                  style={{ fontWeight: "bold", width: "20px" }}
                 ></TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", width: '20px' }}
+                  style={{ fontWeight: "bold", width: "20px" }}
                 ></TableCell>
               </TableRow>
             </TableHead>
-            <TableBody style={{backgroundColor: '#EFC9AF'}}>
+            <TableBody style={{ backgroundColor: "#EFC9AF" }}>
               {tasksList
                 .filter((task) => {
                   if (showCompleted === true) {
@@ -174,49 +200,7 @@ export function MyTasks() {
                   return 0;
                 })
                 .map((task) => (
-                  <TableRow key={tasksList.indexOf(task)}>
-                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
-                      {task.title}
-                    </TableCell>
-                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins', maxWidth: '300px'}}>
-                      {task.description}
-                    </TableCell>
-                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
-                      {task.deadline}
-                    </TableCell>
-                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
-                      {task.deadline >= today ? "in progress" : "completed"}
-                    </TableCell>
-                    <TableCell component="th" scope="row" >
-                      <Button
-                        color='secondaryColor'
-                        variant="contained"
-                        id={task.id}
-                        style={{ cursor: "pointer", fontFamily: 'Poppins' }}
-                        onClick={() =>
-                          setEditingTask({
-                            id: task.id,
-                            title: task.title,
-                            description: task.description,
-                            deadline: task.deadline,
-                          })
-                        }
-                      >
-                        Edit
-                      </Button>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <Button
-                        color='secondaryColor'
-                        variant="contained"
-                        id={task.id}
-                        style={{ cursor: "pointer", fontFamily: 'Poppins' }}
-                        onClick={(e) => setDeletingTask(e.target.id)}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
+                  <MyTasksRow tasksList={tasksList} task={task} today={today} setDeletingTask={setDeletingTask} setEditingTask={setEditingTask}/>
                 ))}
             </TableBody>
           </Table>
@@ -231,7 +215,7 @@ export function MyTasks() {
               padding: "20px",
               marginLeft: "20px",
               position: "relative",
-              backgroundColor: '#104C91'
+              backgroundColor: "#104C91",
             }}
           >
             <NewTask setTasksList={setTasksList} />

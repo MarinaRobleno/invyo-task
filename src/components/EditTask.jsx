@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Paper, TextField, ThemeProvider } from "@mui/material";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { colorTheme, fontTheme } from "./helpers/Theme";
+import { editError, editSuccess } from "./helpers/Toasts";
 
 export function EditTask({
   editingTask,
@@ -27,7 +28,7 @@ export function EditTask({
   const handleSubmitEditTask = (e) => {
     e.preventDefault();
     if (!editedTask.title || !editedTask.description || !editedTask.deadline) {
-      alert("Please complete the fields");
+      editError();
     } else {
       setTasksList(
         tasksList.map((task) =>
@@ -42,6 +43,7 @@ export function EditTask({
         )
       );
       setEditingTask("");
+      editSuccess();
     }
   };
 

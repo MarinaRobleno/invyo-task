@@ -3,6 +3,7 @@ import { Button, TextField, ThemeProvider } from "@mui/material";
 import { AuthContext } from "../helpers/Context";
 import { useNavigate } from "react-router-dom";
 import { fontTheme, colorTheme } from "../helpers/Theme";
+import { loginError, loginSuccess } from "../helpers/Toasts";
 
 export function LogIn() {
   const mailKey = "test@invyo.io";
@@ -23,8 +24,10 @@ export function LogIn() {
     e.preventDefault();
     if (mailKey === mail && passwordKey === password) {
       setLoggedIn(true);
+      loginSuccess();
     } else {
       setError(true);
+      loginError();
     }
   };
 

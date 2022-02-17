@@ -2,9 +2,9 @@ import { Alert, Button, TextField, ThemeProvider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { colorTheme, fontTheme } from "./helpers/Theme";
+import { addError, addSuccess } from "./helpers/Toasts";
 
 export function NewTask({ setTasksList }) {
-  const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
   const [newTask, setNewTask] = useState({
     id: "",
@@ -30,12 +30,13 @@ export function NewTask({ setTasksList }) {
     e.preventDefault();
     if (!newTask.title || !newTask.description || !newTask.deadline) {
       setError(true);
+      addError();
     } else {
       setTasksList((prev) => [...prev, newTask]);
-      setOpen(true);
       const newTaskForm = document.getElementById("new-task-form");
       newTaskForm.reset();
       setNewTask({});
+      addSuccess();
     }
   };
 
@@ -46,22 +47,6 @@ export function NewTask({ setTasksList }) {
   return (
     <>
       <ThemeProvider theme={(fontTheme, colorTheme)}>
-        {open ? (
-          <Alert
-            style={{
-              position: "absolute",
-              top: "305px",
-              left: "0",
-              width: "100%",
-            }}
-            onClose={() => {
-              setOpen(false);
-            }}
-            severity="success"
-          >
-            Task added succesfully!
-          </Alert>
-        ) : null}
         <form
           id="new-task-form"
           style={{
