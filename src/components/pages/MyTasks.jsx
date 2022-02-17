@@ -72,7 +72,6 @@ export function MyTasks() {
           sx={{
             minWidth: 650,
             margin: "70px 0 20px",
-            padding: "20px",
             backgroundColor: "#104C91"
           }}
         >
@@ -87,7 +86,7 @@ export function MyTasks() {
             <Button
               variant="contained"
               style={{
-                marginLeft: "10px",
+                margin: "20px",
                 width: "150px",
                 height: "40px",
                 fontWeight: "bold",
@@ -102,7 +101,7 @@ export function MyTasks() {
             <Button
               variant="contained"
               style={{
-                marginLeft: "10px",
+                margin: "20px",
                 minWidth: '10px',
                 height: '52px',
                 fontWeight: "bold",
@@ -119,7 +118,7 @@ export function MyTasks() {
             </Button>
           </div>
 
-          <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+          <Table sx={{ minWidth: 650, padding: "20px" }} aria-label="simple table" >
             <TableHead>
               <TableRow>
                 <TableCell
@@ -156,7 +155,7 @@ export function MyTasks() {
                 ></TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{backgroundColor: '#EFC9AF'}}>
               {tasksList
                 .filter((task) => {
                   if (showCompleted === true) {
@@ -176,21 +175,21 @@ export function MyTasks() {
                 })
                 .map((task) => (
                   <TableRow key={tasksList.indexOf(task)}>
-                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
                       {task.title}
                     </TableCell>
-                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins', maxWidth: '300px'}}>
+                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins', maxWidth: '300px'}}>
                       {task.description}
                     </TableCell>
-                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
                       {task.deadline}
                     </TableCell>
-                    <TableCell component="th" scope="row" style={{color: 'white', fontFamily: 'Poppins'}}>
+                    <TableCell component="th" scope="row" style={{color: '#104C91', fontFamily: 'Poppins'}}>
                       {task.deadline >= today ? "in progress" : "completed"}
                     </TableCell>
                     <TableCell component="th" scope="row" >
                       <Button
-                        color='mainColor'
+                        color='secondaryColor'
                         variant="contained"
                         id={task.id}
                         style={{ cursor: "pointer", fontFamily: 'Poppins' }}
@@ -208,7 +207,7 @@ export function MyTasks() {
                     </TableCell>
                     <TableCell component="th" scope="row">
                       <Button
-                        color='mainColor'
+                        color='secondaryColor'
                         variant="contained"
                         id={task.id}
                         style={{ cursor: "pointer", fontFamily: 'Poppins' }}

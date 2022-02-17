@@ -54,7 +54,7 @@ export function EditTask({
           marginLeft: "-150px",
           top: "50%",
           marginTop: "-150px",
-          backgroundColor: "#EFC9AF"
+          backgroundColor: "#104C91"
         }}
         sx={{
           position: "absolute",
@@ -72,7 +72,7 @@ export function EditTask({
             justifyContent: "space-between",
             fontFamily: 'Poppins',
             fontWeight: '600',
-            color:'#104C91'
+            color:'#EFC9AF'
           }}
         >
           Edit Task
@@ -101,12 +101,12 @@ export function EditTask({
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "#EFC9AF",
-                backgroundColor: "#104C91",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <TextField
@@ -118,12 +118,12 @@ export function EditTask({
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "#EFC9AF",
-                backgroundColor: "#104C91",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <TextField
@@ -135,12 +135,12 @@ export function EditTask({
             InputProps={{
               style: {
                 fontFamily: "Poppins",
-                color: "#EFC9AF",
-                backgroundColor: "#104C91",
+                color: "#104C91",
+                backgroundColor: "#EFC9AF",
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#EFC9AF" },
+              style: { fontFamily: "Poppins", color: "#104C91" },
             }}
           />
           <Button

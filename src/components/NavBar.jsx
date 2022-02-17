@@ -13,7 +13,7 @@ export function NavBar({ setLoggedIn }) {
         <div className="button-line">
           <Link to="/data">
             <Button
-              style={{ fontWeight: "bold", fontFamily: 'Poppins', color: 'helperColor', height: '40px' }}
+              style={{ fontWeight: "bold", fontFamily: 'Poppins', height: '40px' }}
               className="nav-button"
               variant={path == '/data' ? "contained" : "outlined"}
               color="mainColor"
@@ -23,7 +23,7 @@ export function NavBar({ setLoggedIn }) {
           </Link>
           <Link to="/todo">
             <Button
-              style={{ fontWeight: "bold", fontFamily: 'Poppins', color: 'helperColor', height: '40px' }}
+              style={{ fontWeight: "bold", fontFamily: 'Poppins', height: '40px' }}
               className="nav-button"
               variant={path == '/todo' ? "contained" : "outlined"}
               color="mainColor"

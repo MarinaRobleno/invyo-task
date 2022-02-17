@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { ThemeProvider } from "@mui/material";
+import React from "react";
 import Graph from "react-graph-vis";
 import data from "../../data/data";
+import { colorTheme, fontTheme } from "../helpers/Theme";
 
 export function Network() {
   const network = data.network;
@@ -22,17 +24,21 @@ export function Network() {
       hierarchical: false,
     },
     edges: {
-      color: "#2074d4",
+      color: "#104C91",
       length: 250,
     },
     nodes: {
-      color: "#2074d4",
+      color: "#EFC9AF",
       shape: "circle",
-      font: { color: "#FFFFFF" },
+      font: { color: "#104C91", face: "Poppins" },
     },
     height: "1000px",
     width: "100%",
   };
 
-  return <Graph graph={graph} options={options} />;
+  return (
+    <ThemeProvider theme={fontTheme, colorTheme}>
+      <Graph graph={graph} options={options} />
+    </ThemeProvider>
+  );
 }

@@ -12,8 +12,8 @@ export function ConfirmDelete({ handleDeleteTask, setDeletingTask }) {
           marginLeft: "-150px",
           top: "50%",
           marginTop: "-60px",
-          backgroundColor: "#EFC9AF",
-          color: "#104C91",
+          backgroundColor: "#104C91",
+          color: "#EFC9AF",
           fontWeight: '600'
         }}
         sx={{

@@ -122,7 +122,7 @@ export function NewTask({ setTasksList }) {
           />
           <Button
             variant="contained"
-            color="mainColor"
+            color="helperColor"
             type="submit"
             style={{
               width: "55px",
