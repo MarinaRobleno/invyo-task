@@ -40,7 +40,7 @@ export function LogIn() {
   return (
     <div className="login-container">
       <ThemeProvider theme={fontTheme, colorTheme}>
-        <h1 style={{ fontFamily: "Poppins", marginBottom: "30px" }}>Log In</h1>
+        <h1 className="login-title">Log In</h1>
         <form className="login-form" onSubmit={handleLoginSubmit}>
           <TextField
             InputProps={{

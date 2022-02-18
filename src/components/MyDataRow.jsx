@@ -3,11 +3,11 @@ import { TableRow, TableCell, Chip } from "@mui/material";
 
 export function MyDataRow({ articles, article, setTag, handleShowMore }) {
   return (
-    <TableRow key={articles.indexOf(article)}>
+    <TableRow key={articles.indexOf(article)} style={{height: '130px'}}>
       <TableCell
         component="th"
         scope="row"
-        style={{ color: "#104C91", fontFamily: "Poppins" }}
+        style={{ color: "#104C91", fontFamily: "Poppins", width: "350px" }}
       >
         {article.Title}
       </TableCell>
@@ -16,7 +16,7 @@ export function MyDataRow({ articles, article, setTag, handleShowMore }) {
         align="left"
         className="hide-content"
         style={{
-          maxWidth: "700px",
+          maxWidth: "650px",
           color: "#104C91",
           fontFamily: "Poppins",
         }}

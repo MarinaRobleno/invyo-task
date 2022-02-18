@@ -75,10 +75,11 @@ export function MyTasks() {
     <div style={{ display: "flex" }}>
       <ThemeProvider theme={(fontTheme, colorTheme)}>
         <TableContainer
+          className="table-container"
           component={Paper}
-          style={{ width: "100%", height: "100%" }}
-          sx={{
-            minWidth: 650,
+          style={{
+            width: "100%",
+            height: "100%",
             margin: "70px 0 20px",
             backgroundColor: "#104C91",
           }}
@@ -127,7 +128,6 @@ export function MyTasks() {
           </div>
 
           <Table
-            sx={{ minWidth: 650, padding: "20px" }}
             aria-label="simple table"
           >
             <TableHead>
