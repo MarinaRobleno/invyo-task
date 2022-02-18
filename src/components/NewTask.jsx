@@ -61,6 +61,7 @@ export function NewTask({ setTasksList, today }) {
           <TextField
             label="Title"
             size="small"
+            variant="filled"
             onChange={handleNewTitle}
             error={error}
             InputProps={{
@@ -68,15 +69,17 @@ export function NewTask({ setTasksList, today }) {
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <TextField
             label="Description"
             size="small"
+            variant="filled"
             onChange={handleNewDescription}
             error={error}
             InputProps={{
@@ -84,15 +87,17 @@ export function NewTask({ setTasksList, today }) {
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <TextField
             type="date"
             size="small"
+            variant="filled"
             onChange={handleNewDeadline}
             error={error}
             InputProps={{
@@ -100,10 +105,11 @@ export function NewTask({ setTasksList, today }) {
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <Button

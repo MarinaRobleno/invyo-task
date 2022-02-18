@@ -17,8 +17,8 @@ a {
 
 .button-line {
   display: flex;
-  justify-content: space-between;
-  width: 290px;
+  justify-content: center;
+  width: 450px;
 }
 
 .nav-button {

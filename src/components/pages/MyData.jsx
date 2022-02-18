@@ -125,7 +125,7 @@ export function MyData() {
               style={{ width: "100%", marginBottom: "20px" }}
               id="search-bar"
               label="Search Title or Content"
-              variant="outlined"
+              variant="filled"
               onChange={handleSearch}
               color="secondaryColor"
               InputProps={{
@@ -160,7 +160,7 @@ export function MyData() {
             }}
             id="filter-div"
           >
-            <FormControl style={{ width: "100%" }}>
+            <FormControl variant="filled" style={{ width: "100%" }}>
               <InputLabel style={{ color: "#104C91", fontFamily: "Poppins" }}>
                 Order Alphabetically
               </InputLabel>
@@ -192,7 +192,7 @@ export function MyData() {
                 </MenuItem>
               </Select>
             </FormControl>
-            <FormControl style={{ width: "100%", marginLeft: "10px" }}>
+            <FormControl variant="filled" style={{ width: "100%", marginLeft: "10px" }}>
               <InputLabel
                 id="language-filter"
                 style={{ color: "#104C91", fontFamily: "Poppins" }}
@@ -229,7 +229,7 @@ export function MyData() {
                 ))}
               </Select>
             </FormControl>
-            <FormControl style={{ width: "100%", marginLeft: "10px" }}>
+            <FormControl variant="filled" style={{ width: "100%", marginLeft: "10px" }}>
               <InputLabel
                 id="tag-filter"
                 style={{ color: "#104C91", fontFamily: "Poppins" }}

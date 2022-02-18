@@ -74,7 +74,7 @@ export function EditTask({
             justifyContent: "space-between",
             fontFamily: 'Poppins',
             fontWeight: '600',
-            color:'#EFC9AF'
+            color:'white'
           }}
         >
           Edit Task
@@ -97,6 +97,7 @@ export function EditTask({
           <TextField
             label="Title"
             size="small"
+            variant="filled"
             style={{ width: "100%" }}
             defaultValue={editingTask.title}
             onChange={handleEditTitle}
@@ -105,15 +106,17 @@ export function EditTask({
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <TextField
             label="Description"
             size="small"
+            variant="filled"
             style={{ width: "100%" }}
             defaultValue={editingTask.description}
             onChange={handleEditDescription}
@@ -122,15 +125,17 @@ export function EditTask({
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <TextField
             type="date"
             size="small"
+            variant="filled"
             style={{ width: "100%" }}
             defaultValue={editingTask.deadline}
             onChange={handleEditDeadline}
@@ -139,10 +144,11 @@ export function EditTask({
                 fontFamily: "Poppins",
                 color: "#104C91",
                 backgroundColor: "#EFC9AF",
+                fontSize: '14px'
               },
             }}
             InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
+              style: { fontFamily: "Poppins", color: "#104C91", fontSize: '14px' },
             }}
           />
           <Button

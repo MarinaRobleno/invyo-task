@@ -16,7 +16,10 @@ export function NavBar({ setLoggedIn }) {
               style={{
                 fontWeight: "bold",
                 fontFamily: "Poppins",
-                height: "40px",
+                height: "70px",
+                width: '150px',
+                borderRadius: '0',
+                border: 'none'
               }}
               className="nav-button"
               variant={path == "/todo" ? "contained" : "text"}
@@ -30,11 +33,15 @@ export function NavBar({ setLoggedIn }) {
               style={{
                 fontWeight: "bold",
                 fontFamily: "Poppins",
-                height: "40px",
+                height: "70px",
+                width: '150px',
+                borderRadius: '0',
+                border: 'none'
               }}
               className="nav-button"
               variant={path == "/data" ? "contained" : "text"}
               color="mainColor"
+              
             >
               Data
             </Button>
@@ -46,7 +53,10 @@ export function NavBar({ setLoggedIn }) {
                 style={{
                   fontWeight: "bold",
                   fontFamily: "Poppins",
-                  height: "40px",
+                  height: "70px",
+                  width: '150px',
+                  borderRadius: '0',
+                  border: 'none'
                 }}
                 color="mainColor"
               >
@@ -56,13 +66,14 @@ export function NavBar({ setLoggedIn }) {
         </div>
         <Button
           style={{
-            minWidth: "30px",
+            minWidth: "60px",
+            height: "70px",
             fontFamily: "Poppins",
             color: "helperColor",
-            borderRadius: "100%",
+            borderRadius: "0",
           }}
           className="logout-button"
-          variant="contained"
+          variant="text"
           color="mainColor"
           onClick={() => setLoggedIn(false)}
         >
