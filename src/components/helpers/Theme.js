@@ -21,7 +21,7 @@ export const fontTheme = createTheme({
 export const colorTheme = createTheme({
   palette: {
     mainColor: {
-      main: '#EFC9AF',
+      main: '#EDEDED',
       contrastText: '#104C91',
     },
     secondaryColor: {

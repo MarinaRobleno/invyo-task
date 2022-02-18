@@ -23,7 +23,7 @@ export function Network() {
       hierarchical: false,
     },
     edges: {
-      color: "#104C91",
+      color: "#EDEDED",
       physics: true,
       smooth: {
         enabled: true,
@@ -31,10 +31,10 @@ export function Network() {
       }
     },
     nodes: {
-      color: "#EFC9AF",
+      color: "#EDEDED",
       shape: "dot",
       size: 16,
-      font: { color: "#104C91", face: "Poppins" },
+      font: { color: "#EDEDED", face: "Poppins" },
     },
     physics: {
       forceAtlas2Based: {

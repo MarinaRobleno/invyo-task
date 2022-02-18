@@ -78,10 +78,34 @@ a {
 
 .display-none {
   display: none;
+  
+}
+
+#add-form-container.visible{
+  opacity: 1;
+  width: 400px;
+}
+
+#add-form-container{
+  width: 1px;
+  opacity: 0;
+  transition: all .5s ease;
 }
 
 .table-container{
   margin: 0 250px;
+  animation: displayTable 200ms linear;
+}
+
+
+@keyframes displayTable{
+  0% {opacity: 0;}
+  100% {opacity: 100%;}
+}
+
+@keyframes visibleAnimation{
+  0% {width: 0;}
+  100% {width: 400px;}
 }
 
 @media only screen and (max-width: 1600px) {

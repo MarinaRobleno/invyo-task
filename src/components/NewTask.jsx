@@ -1,4 +1,4 @@
-import { Alert, Button, TextField, ThemeProvider } from "@mui/material";
+import { Button, TextField, ThemeProvider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { colorTheme, fontTheme } from "./helpers/Theme";
@@ -68,7 +68,7 @@ export function NewTask({ setTasksList, today }) {
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -86,7 +86,7 @@ export function NewTask({ setTasksList, today }) {
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -104,7 +104,7 @@ export function NewTask({ setTasksList, today }) {
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -114,7 +114,7 @@ export function NewTask({ setTasksList, today }) {
           />
           <Button
             variant="contained"
-            color="helperColor"
+            color="mainColor"
             type="submit"
             style={{
               width: "55px",

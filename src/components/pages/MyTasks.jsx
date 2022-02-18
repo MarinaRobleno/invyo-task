@@ -10,11 +10,15 @@ import {
   Button,
   ThemeProvider,
   Modal,
+  Switch,
 } from "@mui/material";
-import { MdOutlineAddCircle } from "react-icons/md";
+import { MdPostAdd } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import { NewTask } from "../NewTask";
-import { AiFillCloseCircle } from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiFillEdit,
+} from "react-icons/ai";
 import { ConfirmDelete } from "../ConfirmDelete";
 import { EditTask } from "../EditTask";
 import { fontTheme, colorTheme } from "../helpers/Theme";
@@ -42,10 +46,13 @@ export function MyTasks() {
   today = yyyy + "-" + mm + "-" + dd;
 
   const handleOpenAddForm = () => {
+    const addFormContainer = document.getElementById("add-form-container");
     if (addForm) {
       setAddForm(false);
+      addFormContainer.classList.remove("visible");
     } else {
       setAddForm(true);
+      addFormContainer.classList.add("visible");
     }
   };
 
@@ -72,7 +79,7 @@ export function MyTasks() {
   }, [tasksList]);
 
   return (
-    <div className='table-container' style={{display: 'flex'}}>
+    <div className="table-container" style={{ display: "flex" }}>
       <ThemeProvider theme={(fontTheme, colorTheme)}>
         <TableContainer
           className="table-container"
@@ -92,44 +99,44 @@ export function MyTasks() {
               width: "100%",
             }}
           >
-            <Button
-              variant="contained"
-              style={{
-                margin: "20px",
-                width: "150px",
-                height: "40px",
-                fontWeight: "bold",
-                fontFamily: "Poppins",
-                fontSize: "12px",
-              }}
-              color="mainColor"
-              onClick={handleShowAll}
+            <div
+              style={{ display: "flex", alignItems: "center", margin: "20px" }}
             >
-              {showCompleted ? "Hide Completed" : "Show Completed"}
-            </Button>
+              <Switch onChange={handleShowAll} />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "150px",
+                  height: "40px",
+                  fontWeight: "bold",
+                  fontFamily: "Poppins",
+                  fontSize: "12px",
+                  color: "#EDEDED",
+                }}
+              >
+                {showCompleted ? "Hide Completed" : "Show Completed"}
+              </div>
+            </div>
+            (
             <Button
-              variant="contained"
+              variant={addForm ? "contained" : "text"}
               style={{
                 margin: "20px",
-                minWidth: "10px",
-                height: "52px",
+                minWidth: "50px",
+                height: "50px",
                 fontWeight: "bold",
+                padding: "0",
                 borderRadius: "100%",
               }}
               color="mainColor"
               onClick={handleOpenAddForm}
             >
-              {addForm ? (
-                <AiFillCloseCircle style={{ fontSize: "20px" }} />
-              ) : (
-                <MdOutlineAddCircle style={{ fontSize: "20px" }} />
-              )}
+              <MdPostAdd style={{ fontSize: "25px" }} />
             </Button>
           </div>
 
-          <Table
-            aria-label="simple table"
-          >
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell
@@ -184,15 +191,19 @@ export function MyTasks() {
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", width: "20px" }}
-                ></TableCell>
+                  style={{ fontWeight: "bold", width: "20px", textAlign: 'center' }}
+                >
+                  <AiFillEdit style={{fontSize: '18px', color: 'white'}} />
+                </TableCell>
                 <TableCell
                   align="left"
-                  style={{ fontWeight: "bold", width: "20px" }}
-                ></TableCell>
+                  style={{ fontWeight: "bold", width: "20px", textAlign: 'center' }}
+                >
+                  <AiFillDelete style={{fontSize: '18px', color: 'white'}} />
+                </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody style={{ backgroundColor: "#EFC9AF" }}>
+            <TableBody style={{ backgroundColor: "#EDEDED" }}>
               {tasksList
                 .filter((task) => {
                   if (showCompleted === true) {
@@ -222,35 +233,35 @@ export function MyTasks() {
             </TableBody>
           </Table>
         </TableContainer>
-        {addForm ? (
-          <Box
-            component={Paper}
-            sx={{
-              minWidth: 300,
-              height: 300,
-              margin: "70px 0 20px",
-              padding: "20px",
-              marginLeft: "20px",
-              position: "relative",
-              backgroundColor: "#104C91",
-            }}
-          >
-            <NewTask setTasksList={setTasksList} today={today} />
-          </Box>
-        ) : null}
-        {deletingTask ? (
-          <Modal
-            open={deletingTask != false}
-            onClose={() => setDeletingTask(false)}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <ConfirmDelete
-              handleDeleteTask={handleDeleteTask}
-              setDeletingTask={setDeletingTask}
-            />
-          </Modal>
-        ) : null}
+        <Box
+          className="add-form-container "
+          id="add-form-container"
+          component={Paper}
+          sx={{
+            width: 400,
+            height: 300,
+            margin: "70px 0 20px",
+            padding: "20px",
+            marginLeft: "20px",
+            position: "relative",
+            backgroundColor: "#104C91",
+            transition: "width 2s",
+          }}
+        >
+          <NewTask setTasksList={setTasksList} today={today} />
+        </Box>
+        <Modal
+          id="delete-modal-container"
+          open={deletingTask != false}
+          onClose={() => setDeletingTask(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <ConfirmDelete
+            handleDeleteTask={handleDeleteTask}
+            setDeletingTask={setDeletingTask}
+          />
+        </Modal>
         {editingTask ? (
           <Modal
             open={editingTask != null}

@@ -38,7 +38,7 @@ export function ConfirmDelete({ handleDeleteTask, setDeletingTask }) {
             variant="contained"
             onClick={handleDeleteTask}
             style={{fontFamily: 'Poppins'}}
-            color='helperColor'
+            color='mainColor'
           >
             Yes
           </Button>
@@ -46,7 +46,7 @@ export function ConfirmDelete({ handleDeleteTask, setDeletingTask }) {
             variant="contained"
             onClick={() => setDeletingTask(false)}
             style={{fontFamily: 'Poppins'}}
-            color='helperColor'
+            color='mainColor'
           >
             No
           </Button>

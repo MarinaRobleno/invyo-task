@@ -47,7 +47,7 @@ export function LogIn() {
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
               },
             }}
             InputLabelProps={{
@@ -67,7 +67,7 @@ export function LogIn() {
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
               },
             }}
             InputLabelProps={{

@@ -60,8 +60,10 @@ export function MyTasksRow({
           }
           width="70%"
           height="15px"
-          bgColor="#1F8AC0"
+          bgColor="#104C91"
+          labelAlignment="outside"
           labelSize="12px"
+          labelColor="#104C91"
         />
       </TableCell>
       <TableCell component="th" scope="row">

@@ -9,7 +9,6 @@ import {
   Paper,
   TableFooter,
   TablePagination,
-  Chip,
   Box,
   TextField,
   Button,
@@ -132,7 +131,7 @@ export function MyData() {
                 style: {
                   fontFamily: "Poppins",
                   color: "#104C91",
-                  backgroundColor: "#EFC9AF",
+                  backgroundColor: "#EDEDED",
                 },
               }}
               InputLabelProps={{
@@ -173,7 +172,7 @@ export function MyData() {
                 id="order-alphabetically"
                 color="secondaryColor"
                 style={{
-                  backgroundColor: "#EFC9AF",
+                  backgroundColor: "#EDEDED",
                   color: "#104C91",
                   fontFamily: "Poppins",
                 }}
@@ -207,7 +206,7 @@ export function MyData() {
                 label="Language Filter"
                 color="secondaryColor"
                 style={{
-                  backgroundColor: "#EFC9AF",
+                  backgroundColor: "#EDEDED",
                   color: "#104C91",
                   fontFamily: "Poppins",
                 }}
@@ -245,7 +244,7 @@ export function MyData() {
                 label="Tag Filter"
                 color="secondaryColor"
                 style={{
-                  backgroundColor: "#EFC9AF",
+                  backgroundColor: "#EDEDED",
                   color: "#104C91",
                   fontFamily: "Poppins",
                 }}
@@ -266,7 +265,7 @@ export function MyData() {
         </Box>
         <TableContainer
           component={Paper}
-          style={{ backgroundColor: "#EFC9AF" }}
+          style={{ backgroundColor: "#EDEDED" }}
         >
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead style={{ backgroundColor: "#104C91" }}>

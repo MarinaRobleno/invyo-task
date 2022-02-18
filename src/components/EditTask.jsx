@@ -105,7 +105,7 @@ export function EditTask({
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -124,7 +124,7 @@ export function EditTask({
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -134,6 +134,7 @@ export function EditTask({
           />
           <TextField
             type="date"
+            label="Deadline"
             size="small"
             variant="filled"
             style={{ width: "100%" }}
@@ -143,7 +144,7 @@ export function EditTask({
               style: {
                 fontFamily: "Poppins",
                 color: "#104C91",
-                backgroundColor: "#EFC9AF",
+                backgroundColor: "#EDEDED",
                 fontSize: '14px'
               },
             }}
@@ -153,7 +154,7 @@ export function EditTask({
           />
           <Button
             variant="contained"
-            color='helperColor'
+            color='mainColor'
             type="submit"
             style={{
               width: "120px",
