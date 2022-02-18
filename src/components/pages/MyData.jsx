@@ -99,284 +99,316 @@ export function MyData() {
   }, []);
 
   useEffect(() => {
-    setPage(0)
-  }, [search, order, language, tag])
-
+    setPage(0);
+  }, [search, order, language, tag]);
+  
   return (
-    <ThemeProvider theme={(fontTheme, colorTheme)}>
-      <Box
-        component={Paper}
-        style={{
-          backgroundColor: "#104C91",
-        }}
-        sx={{
-          minWidth: 650,
-          height: 200,
-          margin: "70px 0 20px",
-          padding: "20px",
-        }}
-      >
-        <div
-          style={{ display: "flex", width: "100%", position: "relative" }}
-          id="search-div"
-        >
-          <TextField
-            style={{ width: "100%", marginBottom: "20px" }}
-            id="search-bar"
-            label="Search Title or Content"
-            variant="outlined"
-            onChange={handleSearch}
-            color="secondaryColor"
-            InputProps={{
-              style: {
-                fontFamily: "Poppins",
-                color: "#104C91",
-                backgroundColor: "#EFC9AF",
-              },
-            }}
-            InputLabelProps={{
-              style: { fontFamily: "Poppins", color: "#104C91" },
-            }}
-          />
-          <Button
-            style={{
-              position: "absolute",
-              height: "56px",
-              right: "0",
-              top: "0px",
-            }}
-            onClick={handleClearSearch}
-            color="secondaryColor"
-          >
-            <AiOutlineClose style={{ fontSize: "20px" }} />
-          </Button>
-        </div>
-        <div
+    <div style={{margin: '0 250px'}}>
+      <ThemeProvider theme={(fontTheme, colorTheme)}>
+        <Box
+          component={Paper}
           style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-around",
+            backgroundColor: "#104C91",
           }}
-          id="filter-div"
+          sx={{
+            minWidth: 650,
+            height: 200,
+            margin: "70px 0 20px",
+            padding: "20px",
+          }}
         >
-          <FormControl style={{ width: "100%" }}>
-            <InputLabel style={{ color: "#104C91", fontFamily: "Poppins" }}>
-              Order Alphabetically
-            </InputLabel>
-            <Select
-              labelId="order-alphabetically"
-              id="demo-simple-select-standard"
-              value={order}
-              onChange={handleOrderAlphabetically}
-              label="Order Alphabetically"
-              id="order-alphabetically"
-              color="secondaryColor"
-              style={{
-                backgroundColor: "#EFC9AF",
-                color: "#104C91",
-                fontFamily: "Poppins",
-              }}
-            >
-              <MenuItem
-                value={"title"}
-                style={{ color: "#104C91", fontFamily: "Poppins" }}
-              >
-                Title
-              </MenuItem>
-              <MenuItem
-                value={"content"}
-                style={{ color: "#104C91", fontFamily: "Poppins" }}
-              >
-                Content
-              </MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl style={{ width: "100%", marginLeft: "10px" }}>
-            <InputLabel
-              id="language-filter"
-              style={{ color: "#104C91", fontFamily: "Poppins" }}
-            >
-              Select Language Filter
-            </InputLabel>
-            <Select
-              labelId="language-filter"
-              id="demo-simple-select-standard"
-              value={language}
-              onChange={handleLanguageFilter}
-              label="Language Filter"
-              color="secondaryColor"
-              style={{
-                backgroundColor: "#EFC9AF",
-                color: "#104C91",
-                fontFamily: "Poppins",
-              }}
-            >
-              <MenuItem
-                value=""
-                style={{ color: "#104C91", fontFamily: "Poppins" }}
-              >
-                <em>None</em>
-              </MenuItem>
-              {uniqueLanguageArray.map((language) => (
-                <MenuItem
-                  key={language}
-                  value={language}
-                  style={{ color: "#104C91", fontFamily: "Poppins" }}
-                >
-                  {language}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl style={{ width: "100%", marginLeft: "10px" }}>
-            <InputLabel
-              id="tag-filter"
-              style={{ color: "#104C91", fontFamily: "Poppins" }}
-            >
-              Select Tag Filter
-            </InputLabel>
-            <Select
-              labelId="tag-filter"
-              id="demo-simple-select-standard"
-              multiple
-              value={tag}
-              onChange={handleTagFilter}
-              label="Tag Filter"
-              color="secondaryColor"
-              style={{
-                backgroundColor: "#EFC9AF",
-                color: "#104C91",
-                fontFamily: "Poppins",
-              }}
-            >
-              {uniqueTopicArray.map((topic) => (
-                <MenuItem
-                  key={topic}
-                  value={topic}
-                  style={{ color: "#104C91", fontFamily: "Poppins" }}
-                >
-                  {topic}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <Link to="./network">
-            <Button
-              id="network-button"
+          <div
+            style={{ display: "flex", width: "100%", position: "relative" }}
+            id="search-div"
+          >
+            <TextField
+              style={{ width: "100%", marginBottom: "20px" }}
+              id="search-bar"
+              label="Search Title or Content"
               variant="outlined"
-              style={{
-                marginLeft: "10px",
-                width: "100px",
-                height: "55px",
-                fontWeight: "bold",
-                color: "#EFC9AF",
-                fontFamily: "Poppins",
+              onChange={handleSearch}
+              color="secondaryColor"
+              InputProps={{
+                style: {
+                  fontFamily: "Poppins",
+                  color: "#104C91",
+                  backgroundColor: "#EFC9AF",
+                },
               }}
-              color="mainColor"
+              InputLabelProps={{
+                style: { fontFamily: "Poppins", color: "#104C91" },
+              }}
+            />
+            <Button
+              style={{
+                position: "absolute",
+                height: "56px",
+                right: "0",
+                top: "0px",
+              }}
+              onClick={handleClearSearch}
+              color="secondaryColor"
             >
-              Network
+              <AiOutlineClose style={{ fontSize: "20px" }} />
             </Button>
-          </Link>
-        </div>
-      </Box>
-      <TableContainer component={Paper} style={{ backgroundColor: "#EFC9AF" }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead style={{backgroundColor: '#104C91'}}>
-            <TableRow>
-              <TableCell style={{ fontWeight: "bold", fontFamily:'Poppins', color: 'white' }}>Title</TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold", fontFamily:'Poppins', color: 'white' }}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-around",
+            }}
+            id="filter-div"
+          >
+            <FormControl style={{ width: "100%" }}>
+              <InputLabel style={{ color: "#104C91", fontFamily: "Poppins" }}>
+                Order Alphabetically
+              </InputLabel>
+              <Select
+                labelId="order-alphabetically"
+                id="demo-simple-select-standard"
+                value={order}
+                onChange={handleOrderAlphabetically}
+                label="Order Alphabetically"
+                id="order-alphabetically"
+                color="secondaryColor"
+                style={{
+                  backgroundColor: "#EFC9AF",
+                  color: "#104C91",
+                  fontFamily: "Poppins",
+                }}
               >
-                Content
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold", fontFamily:'Poppins', color: 'white' }}
+                <MenuItem
+                  value={"title"}
+                  style={{ color: "#104C91", fontFamily: "Poppins" }}
+                >
+                  Title
+                </MenuItem>
+                <MenuItem
+                  value={"content"}
+                  style={{ color: "#104C91", fontFamily: "Poppins" }}
+                >
+                  Content
+                </MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl style={{ width: "100%", marginLeft: "10px" }}>
+              <InputLabel
+                id="language-filter"
+                style={{ color: "#104C91", fontFamily: "Poppins" }}
               >
-                Language
-              </TableCell>
-              <TableCell
-                align="left"
-                style={{ fontWeight: "bold", fontFamily:'Poppins', color: 'white' }}
+                Select Language Filter
+              </InputLabel>
+              <Select
+                labelId="language-filter"
+                id="demo-simple-select-standard"
+                value={language}
+                onChange={handleLanguageFilter}
+                label="Language Filter"
+                color="secondaryColor"
+                style={{
+                  backgroundColor: "#EFC9AF",
+                  color: "#104C91",
+                  fontFamily: "Poppins",
+                }}
               >
-                Tags
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {articles
-              .sort(function (a, b) {
-                if (order === "title") {
-                  if (a.Title > b.Title) {
-                    return 1;
-                  } else if (a.Title < b.Title) {
-                    return -1;
+                <MenuItem
+                  value=""
+                  style={{ color: "#104C91", fontFamily: "Poppins" }}
+                >
+                  <em>None</em>
+                </MenuItem>
+                {uniqueLanguageArray.map((language) => (
+                  <MenuItem
+                    key={language}
+                    value={language}
+                    style={{ color: "#104C91", fontFamily: "Poppins" }}
+                  >
+                    {language}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl style={{ width: "100%", marginLeft: "10px" }}>
+              <InputLabel
+                id="tag-filter"
+                style={{ color: "#104C91", fontFamily: "Poppins" }}
+              >
+                Select Tag Filter
+              </InputLabel>
+              <Select
+                labelId="tag-filter"
+                id="demo-simple-select-standard"
+                multiple
+                value={tag}
+                onChange={handleTagFilter}
+                label="Tag Filter"
+                color="secondaryColor"
+                style={{
+                  backgroundColor: "#EFC9AF",
+                  color: "#104C91",
+                  fontFamily: "Poppins",
+                }}
+              >
+                {uniqueTopicArray.map((topic) => (
+                  <MenuItem
+                    key={topic}
+                    value={topic}
+                    style={{ color: "#104C91", fontFamily: "Poppins" }}
+                  >
+                    {topic}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Link to="./network">
+              <Button
+                id="network-button"
+                variant="outlined"
+                style={{
+                  marginLeft: "10px",
+                  width: "100px",
+                  height: "55px",
+                  fontWeight: "bold",
+                  color: "#EFC9AF",
+                  fontFamily: "Poppins",
+                }}
+                color="mainColor"
+              >
+                Network
+              </Button>
+            </Link>
+          </div>
+        </Box>
+        <TableContainer
+          component={Paper}
+          style={{ backgroundColor: "#EFC9AF" }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead style={{ backgroundColor: "#104C91" }}>
+              <TableRow>
+                <TableCell
+                  style={{
+                    fontWeight: "bold",
+                    fontFamily: "Poppins",
+                    color: "white",
+                  }}
+                >
+                  Title
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{
+                    fontWeight: "bold",
+                    fontFamily: "Poppins",
+                    color: "white",
+                  }}
+                >
+                  Content
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{
+                    fontWeight: "bold",
+                    fontFamily: "Poppins",
+                    color: "white",
+                  }}
+                >
+                  Language
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{
+                    fontWeight: "bold",
+                    fontFamily: "Poppins",
+                    color: "white",
+                  }}
+                >
+                  Tags
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {articles
+                .sort(function (a, b) {
+                  if (order === "title") {
+                    if (a.Title > b.Title) {
+                      return 1;
+                    } else if (a.Title < b.Title) {
+                      return -1;
+                    }
+                    return 0;
+                  } else if (order === "content") {
+                    if (a.Content > b.Content) {
+                      return 1;
+                    } else if (a.Content < b.Content) {
+                      return -1;
+                    }
+                    return 0;
                   }
-                  return 0;
-                } else if (order === "content") {
-                  if (a.Content > b.Content) {
-                    return 1;
-                  } else if (a.Content < b.Content) {
-                    return -1;
+                })
+                .filter((article) => {
+                  if (language === "") {
+                    return article;
+                  } else if (article.Language === language) {
+                    return article;
                   }
-                  return 0;
-                }
-              })
-              .filter((article) => {
-                if (language === "") {
-                  return article;
-                } else if (article.Language === language) {
-                  return article;
-                }
-              })
-              .filter((article) => {
-                if (tag.length === 0) {
-                  return article;
-                } else if (
-                  tag.some((element) => article.Tags.topic.includes(element))
-                ) {
-                  return article;
-                }
-              })
-              .filter((article) => {
-                if (search === null) {
-                  return article;
-                } else if (
-                  String(article.Title)
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  String(article.Content)
-                    .toLowerCase()
-                    .includes(search.toLowerCase())
-                ) {
-                  return article;
-                }
-              })
-              .map((article) => <MyDataRow article={article} articles={articles} setTag={setTag} handleShowMore={handleShowMore}/>)
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                count={articlesCount}
-                rowsPerPageOptions={[
-                  5,
-                  10,
-                  25,
-                  100,
-                  { value: -1, label: "All" },
-                ]}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                style={{color: '#104C91', fontFamily: 'Poppins'}}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
-    </ThemeProvider>
+                })
+                .filter((article) => {
+                  if (tag.length === 0) {
+                    return article;
+                  } else if (
+                    tag.some((element) => article.Tags.topic.includes(element))
+                  ) {
+                    return article;
+                  }
+                })
+                .filter((article) => {
+                  if (search === null) {
+                    return article;
+                  } else if (
+                    String(article.Title)
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    String(article.Content)
+                      .toLowerCase()
+                      .includes(search.toLowerCase())
+                  ) {
+                    return article;
+                  }
+                })
+                .map((article) => (
+                  <MyDataRow
+                    article={article}
+                    articles={articles}
+                    setTag={setTag}
+                    handleShowMore={handleShowMore}
+                  />
+                ))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={articlesCount}
+                  rowsPerPageOptions={[
+                    5,
+                    10,
+                    25,
+                    100,
+                    { value: -1, label: "All" },
+                  ]}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  style={{ color: "#104C91", fontFamily: "Poppins" }}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </ThemeProvider>
+    </div>
   );
 }

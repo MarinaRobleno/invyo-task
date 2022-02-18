@@ -72,7 +72,7 @@ export function MyTasks() {
   }, [tasksList]);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", margin: '0 250px' }}>
       <ThemeProvider theme={(fontTheme, colorTheme)}>
         <TableContainer
           className="table-container"
