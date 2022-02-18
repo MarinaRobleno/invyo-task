@@ -4,26 +4,42 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 export const loginSuccess = () => {
-    toast.success('Successfully logged in!')
+    toast.success('Successfully logged in!', {
+        theme: "colored"
+    })
 }
 export const loginError = () => {
-    toast.error('Invalid username or password')
+    toast.error('Invalid username or password', {
+        theme: "colored"
+    })
 }
 export const editSuccess = () => {
-    toast.success('Successfully edited!')
+    toast.success('Successfully edited!', {
+        theme: "colored"
+    })
 }
 export const editError = () => {
-    toast.error('Unable to edit the task')
+    toast.error('Unable to edit the task', {
+        theme: "colored"
+    })
 }
 export const deleteSuccess = () => {
-    toast.success('Successfully deleted!')
+    toast.success('Successfully deleted!', {
+        theme: "colored"
+    })
 }
 export const deleteError = () => {
-    toast.error('Unable to delete the task')
+    toast.error('Unable to delete the task', {
+        theme: "colored"
+    })
 }
 export const addSuccess = () => {
-    toast.success('Successfully added!')
+    toast.success('Successfully added!', {
+        theme: "colored"
+    })
 }
 export const addError = () => {
-    toast.error('Unable to add the task')
+    toast.error('Unable to add the task', {
+        theme: "colored"
+    })
 }

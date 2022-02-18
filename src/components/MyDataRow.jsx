@@ -51,7 +51,7 @@ export function MyDataRow({ articles, article, setTag, handleShowMore }) {
             key={tag}
             label={tag}
             style={{
-              color: "#EFC9AF",
+              color: "white",
               backgroundColor: "#104C91",
               fontFamily: "Poppins",
               cursor: "pointer",
