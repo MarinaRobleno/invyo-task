@@ -67,7 +67,7 @@ export function MyTasksRow({
       <TableCell component="th" scope="row">
         <Button
           color="secondaryColor"
-          variant="contained"
+          variant="text"
           id={task.id}
           style={{ cursor: "pointer", fontFamily: "Poppins" }}
           onClick={() =>
@@ -85,7 +85,7 @@ export function MyTasksRow({
       <TableCell component="th" scope="row">
         <Button
           color="secondaryColor"
-          variant="contained"
+          variant="text"
           id={task.id}
           style={{ cursor: "pointer", fontFamily: "Poppins" }}
           onClick={(e) => setDeletingTask(e.target.id)}

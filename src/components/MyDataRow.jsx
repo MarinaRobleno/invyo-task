@@ -16,7 +16,7 @@ export function MyDataRow({ articles, article, setTag, handleShowMore }) {
         align="left"
         className="hide-content"
         style={{
-          maxWidth: "650px",
+          
           color: "#104C91",
           fontFamily: "Poppins",
         }}

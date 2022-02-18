@@ -103,7 +103,7 @@ export function MyData() {
   }, [search, order, language, tag]);
   
   return (
-    <div style={{margin: '0 250px'}}>
+    <div className='table-container'>
       <ThemeProvider theme={(fontTheme, colorTheme)}>
         <Box
           component={Paper}
@@ -261,23 +261,7 @@ export function MyData() {
                 ))}
               </Select>
             </FormControl>
-            <Link to="./network">
-              <Button
-                id="network-button"
-                variant="outlined"
-                style={{
-                  marginLeft: "10px",
-                  width: "100px",
-                  height: "55px",
-                  fontWeight: "bold",
-                  color: "#EFC9AF",
-                  fontFamily: "Poppins",
-                }}
-                color="mainColor"
-              >
-                Network
-              </Button>
-            </Link>
+
           </div>
         </Box>
         <TableContainer
@@ -387,7 +371,7 @@ export function MyData() {
                 ))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
             </TableBody>
-            <TableFooter>
+            <TableFooter style={{backgroundColor: '#104C91'}}>
               <TableRow>
                 <TablePagination
                   count={articlesCount}
@@ -402,7 +386,7 @@ export function MyData() {
                   page={page}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
-                  style={{ color: "#104C91", fontFamily: "Poppins" }}
+                  style={{ color: "white", fontFamily: "Poppins", border: 'none' }}
                 />
               </TableRow>
             </TableFooter>

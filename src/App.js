@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LogIn />} />
             <Route
-              path="/data/network"
+              path="/network"
               element={
                 <PrivateRoute>
                   <Network />
