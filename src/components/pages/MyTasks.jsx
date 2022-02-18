@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   ThemeProvider,
+  Modal,
 } from "@mui/material";
 import { MdOutlineAddCircle } from "react-icons/md";
 import React, { useEffect, useState } from "react";
@@ -210,7 +211,13 @@ export function MyTasks() {
                   return 0;
                 })
                 .map((task) => (
-                  <MyTasksRow tasksList={tasksList} task={task} today={today} setDeletingTask={setDeletingTask} setEditingTask={setEditingTask}/>
+                  <MyTasksRow
+                    tasksList={tasksList}
+                    task={task}
+                    today={today}
+                    setDeletingTask={setDeletingTask}
+                    setEditingTask={setEditingTask}
+                  />
                 ))}
             </TableBody>
           </Table>
@@ -232,18 +239,32 @@ export function MyTasks() {
           </Box>
         ) : null}
         {deletingTask ? (
-          <ConfirmDelete
-            handleDeleteTask={handleDeleteTask}
-            setDeletingTask={setDeletingTask}
-          />
+          <Modal
+            open={deletingTask != false}
+            onClose={() => setDeletingTask(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <ConfirmDelete
+              handleDeleteTask={handleDeleteTask}
+              setDeletingTask={setDeletingTask}
+            />
+          </Modal>
         ) : null}
         {editingTask ? (
-          <EditTask
-            editingTask={editingTask}
-            setEditingTask={setEditingTask}
-            setTasksList={setTasksList}
-            tasksList={tasksList}
-          />
+          <Modal
+            open={editingTask != null}
+            onClose={() => setEditingTask(null)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <EditTask
+              editingTask={editingTask}
+              setEditingTask={setEditingTask}
+              setTasksList={setTasksList}
+              tasksList={tasksList}
+            />
+          </Modal>
         ) : null}
       </ThemeProvider>
     </div>

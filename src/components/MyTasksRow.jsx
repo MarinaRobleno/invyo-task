@@ -41,7 +41,7 @@ export function MyTasksRow({
         scope="row"
         style={{ color: "#104C91", fontFamily: "Poppins" }}
       >
-        {task.deadline >= today ? "in progress" : "completed"}
+        {task.deadline > today ? "in progress" : "completed"}
       </TableCell>
       <TableCell
         component="th"
