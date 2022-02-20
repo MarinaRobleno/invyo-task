@@ -23,6 +23,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { fontTheme, colorTheme } from "../helpers/Theme";
 import { MyDataRow } from "../MyDataRow";
+import BackToTop from "../BackToTop";
 
 export function MyData() {
   const articles = data.articles;
@@ -100,9 +101,9 @@ export function MyData() {
   useEffect(() => {
     setPage(0);
   }, [search, order, language, tag]);
-  
+
   return (
-    <div className='table-container'>
+    <div className="table-container">
       <ThemeProvider theme={(fontTheme, colorTheme)}>
         <Box
           component={Paper}
@@ -191,7 +192,10 @@ export function MyData() {
                 </MenuItem>
               </Select>
             </FormControl>
-            <FormControl variant="filled" style={{ width: "100%", marginLeft: "10px" }}>
+            <FormControl
+              variant="filled"
+              style={{ width: "100%", marginLeft: "10px" }}
+            >
               <InputLabel
                 id="language-filter"
                 style={{ color: "#104C91", fontFamily: "Poppins" }}
@@ -228,7 +232,10 @@ export function MyData() {
                 ))}
               </Select>
             </FormControl>
-            <FormControl variant="filled" style={{ width: "100%", marginLeft: "10px" }}>
+            <FormControl
+              variant="filled"
+              style={{ width: "100%", marginLeft: "10px" }}
+            >
               <InputLabel
                 id="tag-filter"
                 style={{ color: "#104C91", fontFamily: "Poppins" }}
@@ -260,9 +267,12 @@ export function MyData() {
                 ))}
               </Select>
             </FormControl>
-
           </div>
         </Box>
+        <BackToTop
+          showBelow={250}
+          
+        />
         <TableContainer
           component={Paper}
           style={{ backgroundColor: "#EDEDED" }}
@@ -370,7 +380,7 @@ export function MyData() {
                 ))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
             </TableBody>
-            <TableFooter style={{backgroundColor: '#104C91'}}>
+            <TableFooter style={{ backgroundColor: "#104C91" }}>
               <TableRow>
                 <TablePagination
                   count={articlesCount}
@@ -385,7 +395,11 @@ export function MyData() {
                   page={page}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
-                  style={{ color: "white", fontFamily: "Poppins", border: 'none' }}
+                  style={{
+                    color: "white",
+                    fontFamily: "Poppins",
+                    border: "none",
+                  }}
                 />
               </TableRow>
             </TableFooter>

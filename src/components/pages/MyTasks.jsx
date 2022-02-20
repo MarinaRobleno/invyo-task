@@ -118,7 +118,6 @@ export function MyTasks() {
                 {showCompleted ? "Hide Completed" : "Show Completed"}
               </div>
             </div>
-            (
             <Button
               variant={addForm ? "contained" : "text"}
               style={{
