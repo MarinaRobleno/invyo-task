@@ -115,7 +115,7 @@ export function MyTasks() {
                   color: "#EDEDED",
                 }}
               >
-                {showCompleted ? "Hide Completed" : "Show Completed"}
+                {showCompleted ? "Showing Completed" : "Hiding Completed"}
               </div>
             </div>
             <Button
